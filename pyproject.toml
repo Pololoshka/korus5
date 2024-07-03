@@ -1,0 +1,67 @@
+[tool.poetry]
+name = "korus5"
+version = "0.1.0"
+description = ""
+authors = ["Pololoshka <sokolova.polya.98gmail.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "~3.12"
+apache-airflow-providers-postgres = "^5.11.2"
+
+[tool.poetry.group.dev.dependencies]
+apache-airflow = "==2.9.2"
+airflow-stubs = "^0.0.1"
+ruff = "^0.5.0"
+mypy = "^1.10.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+show-fixes = true
+
+[tool.ruff.lint]
+# https://docs.astral.sh/ruff/rules/#error-e
+select = ["ALL"]
+ignore = [
+  "ANN",     # flake8-annotations
+  "D",       # pydocstyle
+  "ISC001",  # flake8-implicit-str-concat. Checks for implicitly concatenated strings on a single line
+  "COM812",  # flake8-commas. Trailing comma missing
+  "PLR2004", # pylint-refactor. Magic value used in comparison
+  "TRY300",  # tryceratops. Consider moving this statement to an `else` block
+]
+
+[tool.ruff.lint.extend-per-file-ignores]
+"test*" = [
+  "S101", # flake8-bandit. Use of assert detected
+]
+
+[tool.ruff.lint.flake8-builtins]
+builtins-ignorelist = ["id"]
+
+[tool.ruff.lint.flake8-comprehensions]
+allow-dict-calls-with-keyword-arguments = true
+
+[tool.ruff.lint.pylint]
+allow-magic-value-types = ["int"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 8
+
+[tool.mypy]
+# follow_imports = "silent"
+warn_redundant_casts = true
+warn_unused_ignores = true
+disallow_any_generics = true
+check_untyped_defs = true
+no_implicit_reexport = true
+
+# for strict mypy: (this is the tricky one :-))
+disallow_untyped_defs = true
