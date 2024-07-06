@@ -1,0 +1,289 @@
+<mxfile host="app.diagrams.net" modified="2024-07-06T18:06:20.412Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36" version="24.6.4" etag="_x30fjnF7JwQyTm-2Itl" type="device">
+  <diagram name="Page 2" id="0">
+    <mxGraphModel dx="2353" dy="2127" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" style="graphMlID=entity0;gradientDirection=east;shape=swimlane;startSize=30;rounded=1;arcSize=5;collapsible=0;strokeWidth=1.0;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="40" y="40" width="106" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="0.0.0" value="id&lt;br/&gt;активность&lt;br/&gt;Дата изм.&lt;br/&gt;название&lt;br/&gt;Сорт.&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;" style="text;html=1;spacing=0;align=left;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="2" vertex="1">
+          <mxGeometry x="2" y="31.66796875" width="102" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="0.0.1" value="базы_данных" style="text;html=1;spacing=0;align=center;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="2" vertex="1">
+          <mxGeometry y="4" width="102" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="3" style="graphMlID=entity1;gradientDirection=east;shape=swimlane;startSize=30;rounded=1;arcSize=5;collapsible=0;strokeWidth=1.0;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="2515" y="244" width="293.96" height="194" as="geometry" />
+        </mxCell>
+        <mxCell id="0.1.0" value="id&lt;br/&gt;активность&lt;br/&gt;Базы данных&lt;br/&gt;дата&lt;br/&gt;Дата изм.&lt;br/&gt;название&lt;br/&gt;Сорт.&lt;br/&gt;Уровень знаний&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;" style="text;html=1;spacing=0;align=left;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="3" vertex="1">
+          <mxGeometry x="2" y="31.66796875" width="241" height="164" as="geometry" />
+        </mxCell>
+        <mxCell id="0.1.1" value="базы_данных_и_уровень_знаний_сотру" style="text;html=1;spacing=0;align=center;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="3" vertex="1">
+          <mxGeometry y="4" width="241" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="4" style="graphMlID=entity2;gradientDirection=east;shape=swimlane;startSize=30;rounded=1;arcSize=5;collapsible=0;strokeWidth=1.0;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="349" y="40" width="106" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="0.2.0" value="id&lt;br/&gt;активность&lt;br/&gt;Дата изм.&lt;br/&gt;название&lt;br/&gt;Сорт.&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;" style="text;html=1;spacing=0;align=left;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="4" vertex="1">
+          <mxGeometry x="2" y="31.66796875" width="102" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="0.2.1" value="инструменты" style="text;html=1;spacing=0;align=center;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="4" vertex="1">
+          <mxGeometry y="4" width="102" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="5" style="graphMlID=entity3;gradientDirection=east;shape=swimlane;startSize=30;rounded=1;arcSize=5;collapsible=0;strokeWidth=1.0;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="40" y="508" width="286.52" height="194" as="geometry" />
+        </mxCell>
+        <mxCell id="0.3.0" value="id&lt;br/&gt;активность&lt;br/&gt;дата&lt;br/&gt;Дата изм.&lt;br/&gt;инструменты&lt;br/&gt;название&lt;br/&gt;Сорт.&lt;br/&gt;Уровень знаний&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;" style="text;html=1;spacing=0;align=left;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="5" vertex="1">
+          <mxGeometry x="2" y="31.66796875" width="235" height="164" as="geometry" />
+        </mxCell>
+        <mxCell id="0.3.1" value="инструменты_и_уровень_знаний_сотр" style="text;html=1;spacing=0;align=center;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="5" vertex="1">
+          <mxGeometry y="4" width="235" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="6" style="graphMlID=entity4;gradientDirection=east;shape=swimlane;startSize=30;rounded=1;arcSize=5;collapsible=0;strokeWidth=1.0;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="349" y="812" width="253.88" height="274" as="geometry" />
+        </mxCell>
+        <mxCell id="0.4.0" value="id&lt;br/&gt;User ID&lt;br/&gt;активность&lt;br/&gt;Год окончания&lt;br/&gt;Дата изм.&lt;br/&gt;квалификация&lt;br/&gt;Название учебного заведения&lt;br/&gt;Сорт.&lt;br/&gt;специальность&lt;br/&gt;Уровень образование&lt;br/&gt;Факультет, кафедра&lt;br/&gt;Фиктивное название&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;" style="text;html=1;spacing=0;align=left;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="6" vertex="1">
+          <mxGeometry x="2" y="31.66796875" width="211" height="244" as="geometry" />
+        </mxCell>
+        <mxCell id="0.4.1" value="образование_пользователей" style="text;html=1;spacing=0;align=center;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="6" vertex="1">
+          <mxGeometry y="4" width="211" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="7" style="graphMlID=entity5;gradientDirection=east;shape=swimlane;startSize=30;rounded=1;arcSize=5;collapsible=0;strokeWidth=1.0;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="349" y="508" width="230.44" height="194" as="geometry" />
+        </mxCell>
+        <mxCell id="0.5.0" value="id&lt;br/&gt;User ID&lt;br/&gt;активность&lt;br/&gt;дата&lt;br/&gt;Дата изм.&lt;br/&gt;отрасли&lt;br/&gt;Сорт.&lt;br/&gt;Уровень знаний в отрасли&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;" style="text;html=1;spacing=0;align=left;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="7" vertex="1">
+          <mxGeometry x="2" y="31.66796875" width="189" height="164" as="geometry" />
+        </mxCell>
+        <mxCell id="0.5.1" value="опыт_сотрудника_в_отраслях" style="text;html=1;spacing=0;align=center;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="7" vertex="1">
+          <mxGeometry y="4" width="189" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="8" style="graphMlID=entity6;gradientDirection=east;shape=swimlane;startSize=30;rounded=1;arcSize=5;collapsible=0;strokeWidth=1.0;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="634" y="508" width="299.52" height="194" as="geometry" />
+        </mxCell>
+        <mxCell id="0.6.0" value="id&lt;br/&gt;User ID&lt;br/&gt;активность&lt;br/&gt;дата&lt;br/&gt;Дата изм.&lt;br/&gt;Предментые области&lt;br/&gt;Сорт.&lt;br/&gt;Уровень знаний в предметной облас&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;" style="text;html=1;spacing=0;align=left;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="8" vertex="1">
+          <mxGeometry x="2" y="31.66796875" width="248" height="164" as="geometry" />
+        </mxCell>
+        <mxCell id="0.6.1" value="опыт_сотрудника_в_предметных_обла" style="text;html=1;spacing=0;align=center;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="8" vertex="1">
+          <mxGeometry y="4" width="248" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="9" style="graphMlID=entity7;gradientDirection=east;shape=swimlane;startSize=30;rounded=1;arcSize=5;collapsible=0;strokeWidth=1.0;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="634" y="40" width="106" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="0.7.0" value="id&lt;br/&gt;активность&lt;br/&gt;Дата изм.&lt;br/&gt;название&lt;br/&gt;Сорт.&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;" style="text;html=1;spacing=0;align=left;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="9" vertex="1">
+          <mxGeometry x="2" y="31.66796875" width="102" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="0.7.1" value="отрасли" style="text;html=1;spacing=0;align=center;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="9" vertex="1">
+          <mxGeometry y="4" width="102" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="10" style="graphMlID=entity8;gradientDirection=east;shape=swimlane;startSize=30;rounded=1;arcSize=5;collapsible=0;strokeWidth=1.0;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="956" y="40" width="106" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="0.8.0" value="id&lt;br/&gt;активность&lt;br/&gt;Дата изм.&lt;br/&gt;название&lt;br/&gt;Сорт.&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;" style="text;html=1;spacing=0;align=left;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="10" vertex="1">
+          <mxGeometry x="2" y="31.66796875" width="102" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="0.8.1" value="платформы" style="text;html=1;spacing=0;align=center;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="10" vertex="1">
+          <mxGeometry y="4" width="102" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="11" style="graphMlID=entity9;gradientDirection=east;shape=swimlane;startSize=30;rounded=1;arcSize=5;collapsible=0;strokeWidth=1.0;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="956" y="508" width="289.52" height="194" as="geometry" />
+        </mxCell>
+        <mxCell id="0.9.0" value="id&lt;br/&gt;User ID&lt;br/&gt;активность&lt;br/&gt;дата&lt;br/&gt;Дата изм.&lt;br/&gt;платформы&lt;br/&gt;Сорт.&lt;br/&gt;Уровень знаний&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;" style="text;html=1;spacing=0;align=left;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="11" vertex="1">
+          <mxGeometry x="2" y="31.66796875" width="238" height="164" as="geometry" />
+        </mxCell>
+        <mxCell id="0.9.1" value="платформы_и_уровень_знаний_сотруд" style="text;html=1;spacing=0;align=center;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="11" vertex="1">
+          <mxGeometry y="4" width="238" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="12" style="graphMlID=entity10;gradientDirection=east;shape=swimlane;startSize=30;rounded=1;arcSize=5;collapsible=0;strokeWidth=1.0;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="1268" y="40" width="168.92" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="0.10.0" value="id&lt;br/&gt;активность&lt;br/&gt;Дата изм.&lt;br/&gt;название&lt;br/&gt;Сорт.&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;" style="text;html=1;spacing=0;align=left;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="12" vertex="1">
+          <mxGeometry x="2" y="31.66796875" width="139" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="0.10.1" value="предметная_область" style="text;html=1;spacing=0;align=center;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="12" vertex="1">
+          <mxGeometry y="4" width="139" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="13" style="graphMlID=entity11;gradientDirection=east;shape=swimlane;startSize=30;rounded=1;arcSize=5;collapsible=0;strokeWidth=1.0;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="634" y="772" width="218.24" height="354" as="geometry" />
+        </mxCell>
+        <mxCell id="0.11.0" value="ResumeID&lt;br/&gt;UserID&lt;br/&gt;Активность&lt;br/&gt;Базыданных&lt;br/&gt;Инструменты&lt;br/&gt;Образование&lt;br/&gt;Отрасли&lt;br/&gt;Платформы&lt;br/&gt;Предметныеобласти&lt;br/&gt;Сертификаты/Курсы&lt;br/&gt;Средыразработки&lt;br/&gt;Технологии&lt;br/&gt;Типысистем&lt;br/&gt;Фреймворки&lt;br/&gt;Языки&lt;br/&gt;Языкипрограммирования&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;" style="text;html=1;spacing=0;align=left;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="13" vertex="1">
+          <mxGeometry x="2" y="31.66796875" width="184" height="324" as="geometry" />
+        </mxCell>
+        <mxCell id="0.11.1" value="резюмедар" style="text;html=1;spacing=0;align=center;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="13" vertex="1">
+          <mxGeometry y="4" width="184" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="14" style="graphMlID=entity12;gradientDirection=east;shape=swimlane;startSize=30;rounded=1;arcSize=5;collapsible=0;strokeWidth=1.0;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="1268" y="508" width="291.08" height="194" as="geometry" />
+        </mxCell>
+        <mxCell id="0.12.0" value="id&lt;br/&gt;User ID&lt;br/&gt;активность&lt;br/&gt;Год сертификата&lt;br/&gt;Дата изм.&lt;br/&gt;Наименование сертификата&lt;br/&gt;Организация, выдавшая сертификат&lt;br/&gt;Сорт.&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;" style="text;html=1;spacing=0;align=left;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="14" vertex="1">
+          <mxGeometry x="2" y="31.66796875" width="241" height="164" as="geometry" />
+        </mxCell>
+        <mxCell id="0.12.1" value="сертификаты_пользователей" style="text;html=1;spacing=0;align=center;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="14" vertex="1">
+          <mxGeometry y="4" width="241" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="15" style="graphMlID=entity13;gradientDirection=east;shape=swimlane;startSize=30;rounded=1;arcSize=5;collapsible=0;strokeWidth=1.0;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="956" y="772" width="208.24" height="354" as="geometry" />
+        </mxCell>
+        <mxCell id="0.13.0" value="E-Mail&lt;br/&gt;id&lt;br/&gt;активность&lt;br/&gt;Город проживания&lt;br/&gt;Дата изменения&lt;br/&gt;Дата регистрации&lt;br/&gt;Дата рождения&lt;br/&gt;должность&lt;br/&gt;имя&lt;br/&gt;компания&lt;br/&gt;логин&lt;br/&gt;подразделения&lt;br/&gt;пол&lt;br/&gt;Последняя авторизация&lt;br/&gt;фамилия&lt;br/&gt;цфо&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;" style="text;html=1;spacing=0;align=left;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="15" vertex="1">
+          <mxGeometry x="2" y="31.66796875" width="174" height="324" as="geometry" />
+        </mxCell>
+        <mxCell id="0.13.1" value="сотрудники_дар" style="text;html=1;spacing=0;align=center;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="15" vertex="1">
+          <mxGeometry y="4" width="174" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="16" style="graphMlID=entity14;gradientDirection=east;shape=swimlane;startSize=30;rounded=1;arcSize=5;collapsible=0;strokeWidth=1.0;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="1583" y="40" width="132" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="0.14.0" value="id&lt;br/&gt;активность&lt;br/&gt;Дата изм.&lt;br/&gt;название&lt;br/&gt;Сорт.&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;" style="text;html=1;spacing=0;align=left;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="16" vertex="1">
+          <mxGeometry x="2" y="31.66796875" width="128" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="0.14.1" value="среды_разработки" style="text;html=1;spacing=0;align=center;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="16" vertex="1">
+          <mxGeometry y="4" width="128" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="17" style="graphMlID=entity15;gradientDirection=east;shape=swimlane;startSize=30;rounded=1;arcSize=5;collapsible=0;strokeWidth=1.0;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="1583" y="508" width="292.96" height="194" as="geometry" />
+        </mxCell>
+        <mxCell id="0.15.0" value="id&lt;br/&gt;активность&lt;br/&gt;дата&lt;br/&gt;Дата изм.&lt;br/&gt;название&lt;br/&gt;Сорт.&lt;br/&gt;Среды разработки&lt;br/&gt;Уровень знаний&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;" style="text;html=1;spacing=0;align=left;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="17" vertex="1">
+          <mxGeometry x="2" y="31.66796875" width="240" height="164" as="geometry" />
+        </mxCell>
+        <mxCell id="0.15.1" value="среды_разработки_и_уровень_знаний_" style="text;html=1;spacing=0;align=center;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="17" vertex="1">
+          <mxGeometry y="4" width="240" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="18" style="graphMlID=entity16;gradientDirection=east;shape=swimlane;startSize=30;rounded=1;arcSize=5;collapsible=0;strokeWidth=1.0;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="1897" y="40" width="106" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="0.16.0" value="id&lt;br/&gt;активность&lt;br/&gt;Дата изм.&lt;br/&gt;название&lt;br/&gt;Сорт.&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;" style="text;html=1;spacing=0;align=left;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="18" vertex="1">
+          <mxGeometry x="2" y="31.66796875" width="102" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="0.16.1" value="технологии" style="text;html=1;spacing=0;align=center;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="18" vertex="1">
+          <mxGeometry y="4" width="102" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="19" style="graphMlID=entity17;gradientDirection=east;shape=swimlane;startSize=30;rounded=1;arcSize=5;collapsible=0;strokeWidth=1.0;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="1897" y="508" width="282.52" height="194" as="geometry" />
+        </mxCell>
+        <mxCell id="0.17.0" value="id&lt;br/&gt;активность&lt;br/&gt;дата&lt;br/&gt;Дата изм.&lt;br/&gt;название&lt;br/&gt;Сорт.&lt;br/&gt;технологии&lt;br/&gt;Уровень знаний&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;" style="text;html=1;spacing=0;align=left;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="19" vertex="1">
+          <mxGeometry x="2" y="31.66796875" width="231" height="164" as="geometry" />
+        </mxCell>
+        <mxCell id="0.17.1" value="технологии_и_уровень_знаний_сотру" style="text;html=1;spacing=0;align=center;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="19" vertex="1">
+          <mxGeometry y="4" width="231" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="20" style="graphMlID=entity18;gradientDirection=east;shape=swimlane;startSize=30;rounded=1;arcSize=5;collapsible=0;strokeWidth=1.0;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="2202" y="40" width="106" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="0.18.0" value="id&lt;br/&gt;активность&lt;br/&gt;Дата изм.&lt;br/&gt;название&lt;br/&gt;Сорт.&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;" style="text;html=1;spacing=0;align=left;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="20" vertex="1">
+          <mxGeometry x="2" y="31.66796875" width="102" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="0.18.1" value="типы_систем" style="text;html=1;spacing=0;align=center;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="20" vertex="1">
+          <mxGeometry y="4" width="102" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="21" style="graphMlID=entity19;gradientDirection=east;shape=swimlane;startSize=30;rounded=1;arcSize=5;collapsible=0;strokeWidth=1.0;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="2202" y="508" width="291.96" height="194" as="geometry" />
+        </mxCell>
+        <mxCell id="0.19.0" value="id&lt;br/&gt;активность&lt;br/&gt;дата&lt;br/&gt;Дата изм.&lt;br/&gt;название&lt;br/&gt;Сорт.&lt;br/&gt;Типы систем&lt;br/&gt;Уровень знаний&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;" style="text;html=1;spacing=0;align=left;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="21" vertex="1">
+          <mxGeometry x="2" y="31.66796875" width="239" height="164" as="geometry" />
+        </mxCell>
+        <mxCell id="0.19.1" value="типы_систем_и_уровень_знаний_сотру" style="text;html=1;spacing=0;align=center;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="21" vertex="1">
+          <mxGeometry y="4" width="239" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="22" style="graphMlID=entity20;gradientDirection=east;shape=swimlane;startSize=30;rounded=1;arcSize=5;collapsible=0;strokeWidth=1.0;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="2515" y="40" width="179.36" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="0.20.0" value="id&lt;br/&gt;активность&lt;br/&gt;Дата изм.&lt;br/&gt;название&lt;br/&gt;Сорт.&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;" style="text;html=1;spacing=0;align=left;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="22" vertex="1">
+          <mxGeometry x="2" y="31.66796875" width="148" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="0.20.1" value="уровень_образования" style="text;html=1;spacing=0;align=center;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="22" vertex="1">
+          <mxGeometry y="4" width="148" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="23" style="graphMlID=entity21;gradientDirection=east;shape=swimlane;startSize=30;rounded=1;arcSize=5;collapsible=0;strokeWidth=1.0;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="40" y="274" width="171.92" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="0.21.0" value="id&lt;br/&gt;активность&lt;br/&gt;Дата изм.&lt;br/&gt;название&lt;br/&gt;Сорт.&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;" style="text;html=1;spacing=0;align=left;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="23" vertex="1">
+          <mxGeometry x="2" y="31.66796875" width="142" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="0.21.1" value="уровни_владения_ин" style="text;html=1;spacing=0;align=center;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="23" vertex="1">
+          <mxGeometry y="4" width="142" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="24" style="graphMlID=entity22;gradientDirection=east;shape=swimlane;startSize=30;rounded=1;arcSize=5;collapsible=0;strokeWidth=1.0;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="349" y="274" width="114" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="0.22.0" value="id&lt;br/&gt;активность&lt;br/&gt;Дата изм.&lt;br/&gt;название&lt;br/&gt;Сорт.&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;" style="text;html=1;spacing=0;align=left;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="24" vertex="1">
+          <mxGeometry x="2" y="31.66796875" width="110" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="0.22.1" value="уровни_знаний" style="text;html=1;spacing=0;align=center;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="24" vertex="1">
+          <mxGeometry y="4" width="110" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="25" style="graphMlID=entity23;gradientDirection=east;shape=swimlane;startSize=30;rounded=1;arcSize=5;collapsible=0;strokeWidth=1.0;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="634" y="274" width="208.12" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="0.23.0" value="id&lt;br/&gt;активность&lt;br/&gt;Дата изм.&lt;br/&gt;название&lt;br/&gt;Сорт.&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;" style="text;html=1;spacing=0;align=left;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="25" vertex="1">
+          <mxGeometry x="2" y="31.66796875" width="171" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="0.23.1" value="уровни_знаний_в_отрасли" style="text;html=1;spacing=0;align=center;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="25" vertex="1">
+          <mxGeometry y="4" width="171" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="26" style="graphMlID=entity24;gradientDirection=east;shape=swimlane;startSize=30;rounded=1;arcSize=5;collapsible=0;strokeWidth=1.0;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="956" y="274" width="288.52" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="0.24.0" value="id&lt;br/&gt;активность&lt;br/&gt;Дата изм.&lt;br/&gt;название&lt;br/&gt;Сорт.&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;" style="text;html=1;spacing=0;align=left;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="26" vertex="1">
+          <mxGeometry x="2" y="31.66796875" width="237" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="0.24.1" value="уровни_знаний_в_предметной_област" style="text;html=1;spacing=0;align=center;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="26" vertex="1">
+          <mxGeometry y="4" width="237" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="27" style="graphMlID=entity25;gradientDirection=east;shape=swimlane;startSize=30;rounded=1;arcSize=5;collapsible=0;strokeWidth=1.0;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="1268" y="274" width="106" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="0.25.0" value="id&lt;br/&gt;активность&lt;br/&gt;Дата изм.&lt;br/&gt;название&lt;br/&gt;Сорт.&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;" style="text;html=1;spacing=0;align=left;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="27" vertex="1">
+          <mxGeometry x="2" y="31.66796875" width="102" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="0.25.1" value="фреймворки" style="text;html=1;spacing=0;align=center;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="27" vertex="1">
+          <mxGeometry y="4" width="102" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="28" style="graphMlID=entity26;gradientDirection=east;shape=swimlane;startSize=30;rounded=1;arcSize=5;collapsible=0;strokeWidth=1.0;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="2515" y="508" width="290.52" height="194" as="geometry" />
+        </mxCell>
+        <mxCell id="0.26.0" value="id&lt;br/&gt;активность&lt;br/&gt;дата&lt;br/&gt;Дата изм.&lt;br/&gt;название&lt;br/&gt;Сорт.&lt;br/&gt;Уровень знаний&lt;br/&gt;фреймворки&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;" style="text;html=1;spacing=0;align=left;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="28" vertex="1">
+          <mxGeometry x="2" y="31.66796875" width="239" height="164" as="geometry" />
+        </mxCell>
+        <mxCell id="0.26.1" value="фреймворки_и_уровень_знаний_сотру" style="text;html=1;spacing=0;align=center;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="28" vertex="1">
+          <mxGeometry y="4" width="239" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="29" style="graphMlID=entity27;gradientDirection=east;shape=swimlane;startSize=30;rounded=1;arcSize=5;collapsible=0;strokeWidth=1.0;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="1583" y="274" width="106" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="0.27.0" value="id&lt;br/&gt;активность&lt;br/&gt;Дата изм.&lt;br/&gt;название&lt;br/&gt;Сорт.&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;" style="text;html=1;spacing=0;align=left;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="29" vertex="1">
+          <mxGeometry x="2" y="31.66796875" width="102" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="0.27.1" value="языки" style="text;html=1;spacing=0;align=center;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="29" vertex="1">
+          <mxGeometry y="4" width="102" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="30" style="graphMlID=entity28;gradientDirection=east;shape=swimlane;startSize=30;rounded=1;arcSize=5;collapsible=0;strokeWidth=1.0;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="2202" y="254" width="225.56" height="174" as="geometry" />
+        </mxCell>
+        <mxCell id="0.28.0" value="id&lt;br/&gt;активность&lt;br/&gt;Дата изм.&lt;br/&gt;название&lt;br/&gt;Сорт.&lt;br/&gt;Уровень знаний ин. языка&lt;br/&gt;язык&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;" style="text;html=1;spacing=0;align=left;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="30" vertex="1">
+          <mxGeometry x="2" y="31.66796875" width="187" height="144" as="geometry" />
+        </mxCell>
+        <mxCell id="0.28.1" value="языки_пользователей" style="text;html=1;spacing=0;align=center;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="30" vertex="1">
+          <mxGeometry y="4" width="187" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="31" style="graphMlID=entity29;gradientDirection=east;shape=swimlane;startSize=30;rounded=1;arcSize=5;collapsible=0;strokeWidth=1.0;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="1897" y="274" width="207.68" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="0.29.0" value="id&lt;br/&gt;активность&lt;br/&gt;Дата изм.&lt;br/&gt;название&lt;br/&gt;Сорт.&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;" style="text;html=1;spacing=0;align=left;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="31" vertex="1">
+          <mxGeometry x="2" y="31.66796875" width="172" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="0.29.1" value="языки_программирования" style="text;html=1;spacing=0;align=center;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="31" vertex="1">
+          <mxGeometry y="4" width="172" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="32" style="graphMlID=entity30;gradientDirection=east;shape=swimlane;startSize=30;rounded=1;arcSize=5;collapsible=0;strokeWidth=1.0;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="40" y="852" width="285.08" height="194" as="geometry" />
+        </mxCell>
+        <mxCell id="0.30.0" value="id&lt;br/&gt;активность&lt;br/&gt;дата&lt;br/&gt;Дата изм.&lt;br/&gt;название&lt;br/&gt;Сорт.&lt;br/&gt;Уровень знаний&lt;br/&gt;Языки программирования&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;" style="text;html=1;spacing=0;align=left;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="32" vertex="1">
+          <mxGeometry x="2" y="31.66796875" width="235" height="164" as="geometry" />
+        </mxCell>
+        <mxCell id="0.30.1" value="языки_программирования_и_уровень" style="text;html=1;spacing=0;align=center;fontFamily=courier;fontSize=12;fontStyle=0;=center;swimlaneFillColor=#FFFFFF;" parent="32" vertex="1">
+          <mxGeometry y="4" width="235" height="22" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
