@@ -7,7 +7,7 @@
 
 import datetime
 
-import stage_layer.const as c
+import ods_layer.ods_layer_transfer_const as c
 from airflow.models import DAG
 from airflow.operators.empty import EmptyOperator
 from airflow.operators.generic_transfer import GenericTransfer
@@ -21,7 +21,6 @@ with DAG(
     catchup=False,
     params={"schema_name": c.SCHEMA_NAME},
 ) as dag:
-    init = EmptyOperator(task_id="init")
 
     create_schema = SQLExecuteQueryOperator(
         task_id="create_schema",
@@ -41,5 +40,4 @@ with DAG(
         for table in c.TABLES
     ]
 
-    edge = EmptyOperator(task_id="edge")
-    init >> create_schema >> load_upload_data >> edge
+    create_schema >> load_upload_data >> EmptyOperator(task_id="edge")
