@@ -1,0 +1,20 @@
+{
+    "source": {
+        "conn_type": "postgres",
+        "description": "Connection to a Source data",
+        "host": "10.82.0.4",
+        "login": "etl_user_5",
+        "password": ")uNZ6-EN",
+        "schema": "source",
+        "port": 5432
+    },
+    "etl_db_5": {
+        "conn_type": "postgres",
+        "description": "Connection to a WH",
+        "host": "10.82.0.4",
+        "login": "etl_user_5",
+        "password": ")uNZ6-EN",
+        "schema": "etl_db_5",
+        "port": 5432
+    }
+}

@@ -4,8 +4,10 @@
 - Инициализирован проект (poetry)
 - Добавлен [Dockerfile](./Dockerfile) (для устанковки зависимостей в контейнер с airflow с помощью poetry)
 - Подняты контейнеры с помошью [docker compose](./docker-compose.yaml)
-- Создан тестовый [DAG](./dags/task1/dag.py)
 - Добавлен документ [Архитектурное_решение](./documentation/architecture_solution.docx)
 - Добавлена [Архитектурная_схема](./documentation/architecture_schema.drawio) в формате drawio
 - Добавлена [Схема](./documentation/architecture_schema.drawio) слоя "ODS layer" в формате drawio
-- Добавлен [DAG](./dags/stage_layer/main.py), предназначенный для создания слоя "ODS layer"
+- Добавлен [DAG](./dags/ods_layer/ods_layer_transfer.py), предназначенный для создания слоя "ODS layer"
+- Добавлен [DDL-скрипт](./dags/dds_layer/sql/create_schema.sql) для создания слоя "DDS layer"
+- Добавлен [DAG](./dags/dds_layer/dds_layer_transfer.py), предназначенный для создания слоя "DDS layer". На данном в нем только скрипт создания слоя "DDS layer", далее будет добавлена загрузка данных
+- Добавлены Variables и Connections в docker-compose.yaml
