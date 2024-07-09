@@ -1,5 +1,6 @@
 BEGIN;
-INSERT INTO dds_polina.skills_group (skill_group_name)
+
+INSERT INTO "{{ params.schema_name }}".skills_group (skill_group_name)
 VALUES
     ('база данных'),
     ('инструмент'),
@@ -12,7 +13,7 @@ VALUES
 ON CONFLICT (skill_group_name) DO NOTHING;
 
 
-INSERT INTO dds_polina.levels ("level", level_num)
+INSERT INTO "{{ params.schema_name }}".levels ("level", level_num)
 VALUES
  SELECT "название", id
  FROM ods_polina."уровни_знаний"
@@ -20,9 +21,10 @@ VALUES
 ON CONFLICT (level_num) DO UPDATE
 SET "level" = EXCLUDED."level";
 
-INSERT INTO dds_polina.departments (department)
+INSERT INTO "{{ params.schema_name }}".departments (department)
 VALUES
  SELECT DISTINCT REPLACE("подразделения", '. ', '')
  FROM ods_polina."сотрудники_дар"
 ON CONFLICT (department) DO NOTHING;
+
 COMMIT;
