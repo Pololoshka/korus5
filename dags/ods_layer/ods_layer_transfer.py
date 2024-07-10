@@ -7,21 +7,21 @@
 
 import datetime
 
-import ods_layer.ods_layer_transfer_const as c
 from airflow.models import DAG
 from airflow.operators.empty import EmptyOperator
 from airflow.operators.generic_transfer import GenericTransfer
 from airflow.providers.common.sql.operators.sql import SQLExecuteQueryOperator
 
+import ods_layer.ods_layer_transfer_const as c
+
 with DAG(
     dag_id="ods_layer_transfer",
     start_date=datetime.datetime(2024, 7, 7, tzinfo=datetime.UTC),
     schedule="@once",
-    tags=["korus5", "STG"],
+    tags=["korus5", "ODS"],
     catchup=False,
     params={"schema_name": c.SCHEMA_NAME},
 ) as dag:
-
     create_schema = SQLExecuteQueryOperator(
         task_id="create_schema",
         conn_id=c.DESTINATION_CONN_ID,

@@ -9,5 +9,5 @@
 - Добавлена [Схема](./documentation/architecture_schema.drawio) слоя "ODS layer" в формате drawio
 - Добавлен [DAG](./dags/ods_layer/ods_layer_transfer.py), предназначенный для создания слоя "ODS layer"
 - Добавлен [DDL-скрипт](./dags/dds_layer/sql/create_schema.sql) для создания слоя "DDS layer"
-- Добавлен [DAG](./dags/dds_layer/dds_layer_transfer.py), предназначенный для создания слоя "DDS layer". На данном в нем только скрипт создания слоя "DDS layer", далее будет добавлена загрузка данных
+- Добавлен [DAG](./dags/dds_layer/dds_layer_transfer.py), предназначенный для создания слоя "DDS layer"
 - Добавлены Variables и Connections в docker-compose.yaml
