@@ -30,7 +30,8 @@ with DAG(
     load_upload_data = SQLExecuteQueryOperator(
         task_id="load_upload_data",
         conn_id=c.CONN_ID,
-        sql="sql/query.sql",
+        autocommit=False,
+        sql=[f"sql/{table}/query.sql" for table in c.TABLES],
     )
 
     # TODO: dds_layer_transfer.previous_executed_at to  datetime.now()
