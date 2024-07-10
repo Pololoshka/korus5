@@ -291,7 +291,7 @@ services:
     command: >
         bash -c "
         airflow connections import --overwrite /opt/airflow/config/connections.json;
-        airflow variables import -a skip /opt/airflow/config/variables.json;
+        airflow variables import -a overwrite /opt/airflow/config/variables.json;
         "
     depends_on:
       <<: *airflow-common-depends-on

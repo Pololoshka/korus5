@@ -22,29 +22,26 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.ruff]
+src = ["dags"]
 target-version = "py312"
 line-length = 100
 show-fixes = true
+
+[tool.ruff.format]
+docstring-code-format = true
 
 [tool.ruff.lint]
 # https://docs.astral.sh/ruff/rules/#error-e
 select = ["ALL"]
 ignore = [
   "ANN",     # flake8-annotations
-  "D",       # pydocstyle
-  "ISC001",  # flake8-implicit-str-concat. Checks for implicitly concatenated strings on a single line
   "COM812",  # flake8-commas. Trailing comma missing
+  "D",       # pydocstyle
+  "INP001",  # flake8-no-pep420. Add an __init__.py.
+  "ISC001",  # flake8-implicit-str-concat. Checks for implicitly concatenated strings on a single line
   "PLR2004", # pylint-refactor. Magic value used in comparison
   "TRY300",  # tryceratops. Consider moving this statement to an `else` block
 ]
-
-[tool.ruff.lint.extend-per-file-ignores]
-"test*" = [
-  "S101", # flake8-bandit. Use of assert detected
-]
-
-[tool.ruff.lint.flake8-builtins]
-builtins-ignorelist = ["id"]
 
 [tool.ruff.lint.flake8-comprehensions]
 allow-dict-calls-with-keyword-arguments = true
@@ -56,7 +53,7 @@ allow-magic-value-types = ["int"]
 max-complexity = 8
 
 [tool.mypy]
-# follow_imports = "silent"
+mypy_path = "dags"
 warn_redundant_casts = true
 warn_unused_ignores = true
 disallow_any_generics = true
