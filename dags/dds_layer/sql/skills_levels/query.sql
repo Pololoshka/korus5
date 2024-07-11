@@ -12,153 +12,213 @@ CREATE TABLE IF NOT EXISTS "{{ params.dds_schema_name }}".skills_levels (
       REFERENCES "{{ params.dds_schema_name }}".levels (id),
   CONSTRAINT fk_skills_levels_employees
     FOREIGN KEY (user_id)
-      REFERENCES "{{ params.dds_schema_name }}".employees (id),
-  UNIQUE (skill_id, level_id, user_id)
+      REFERENCES "{{ params.dds_schema_name }}".employees (id)
+-- UNIQUE (skill_id, level_id, user_id)  This table will have duplicates. Suggested by BA
 );
+
+-- Creating temp table 'temp_skills_levels' with all user-skill association
+CREATE TEMP TABLE temp_skills_levels ON COMMIT DROP AS (
+  SELECT
+    source.id,
+    source.date,
+    u.id as user_id,
+    l.id as level_id,
+    s.id as skill_id,
+    source.row_data
+  FROM
+    (
+      SELECT
+        src.id AS id,
+        TO_DATE (NULLIF(src."дата", ''), 'DD MM YYYY') AS "date",
+        CAST(substring(src."название", 'User:(\d+)') AS INT) AS user_id,
+        CAST(substring(src."Базы данных", '\[(\d+)\]') AS INT) AS skill_id,
+        CAST(substring(src."Уровень знаний", '\[(\d+)\]') AS INT) AS level_id,
+        CAST(src."Дата изм." AS TIMESTAMP) AS modified_at,
+        row_to_json(src) AS row_data
+      FROM
+        "{{ params.ods_schema_name }}"."базы_данных_и_уровень_знаний_сотру" AS src
+
+      UNION ALL
+      SELECT
+        src.id AS id,
+        TO_DATE (NULLIF(src."дата", ''), 'DD MM YYYY') AS "date",
+        CAST(substring(src."название", 'User:(\d+)') AS INT) AS user_id,
+        CAST(substring(src."инструменты", '\[(\d+)\]') AS INT) AS skill_id,
+        CAST(substring(src."Уровень знаний", '\[(\d+)\]') AS INT) AS level_id,
+        CAST(src."Дата изм." AS TIMESTAMP) AS modified_at,
+        row_to_json(src) AS row_data
+      FROM
+        "{{ params.ods_schema_name }}"."инструменты_и_уровень_знаний_сотр" AS src
+
+      UNION ALL
+      SELECT
+        src.id AS id,
+        TO_DATE (NULLIF(src."дата", ''), 'DD MM YYYY') AS "date",
+        CAST(src."User ID" AS INT) AS user_id,
+        CAST(substring(src."платформы", '\[(\d+)\]') AS INT) AS skill_id,
+        CAST(substring(src."Уровень знаний", '\[(\d+)\]') AS INT) AS level_id,
+        CAST(src."Дата изм." AS TIMESTAMP) AS modified_at,
+        row_to_json(src) AS row_data
+      FROM
+        "{{ params.ods_schema_name }}"."платформы_и_уровень_знаний_сотруд" AS src
+
+      UNION ALL
+      SELECT
+        src.id AS id,
+        TO_DATE (NULLIF(src."дата", ''), 'DD MM YYYY') AS "date",
+        CAST(substring(src."название", 'User:(\d+)') AS INT) AS user_id,
+        CAST(substring(src."Среды разработки", '\[(\d+)\]') AS INT) AS skill_id,
+        CAST(substring(src."Уровень знаний", '\[(\d+)\]') AS INT) AS level_id,
+        CAST(src."Дата изм." AS TIMESTAMP) AS modified_at,
+        row_to_json(src) AS row_data
+      FROM
+        "{{ params.ods_schema_name }}"."среды_разработки_и_уровень_знаний_" AS src
+
+      UNION ALL
+      SELECT
+        src.id AS id,
+        TO_DATE (NULLIF(src."дата", ''), 'DD MM YYYY') AS "date",
+        CAST(substring(src."название", 'User:(\d+)') AS INT) AS user_id,
+        CAST(substring(src."технологии", '\[(\d+)\]') AS INT) AS skill_id,
+        CAST(substring(src."Уровень знаний", '\[(\d+)\]') AS INT) AS level_id,
+        CAST(src."Дата изм." AS TIMESTAMP) AS modified_at,
+        row_to_json(src) AS row_data
+      FROM
+        "{{ params.ods_schema_name }}"."технологии_и_уровень_знаний_сотру" AS src
+
+      UNION ALL
+      SELECT
+        src.id AS id,
+        TO_DATE (NULLIF(src."дата", ''), 'DD MM YYYY') AS "date",
+        CAST(substring(src."название", 'User:(\d+)') AS INT) AS user_id,
+        CAST(substring(src."фреймворки", '\[(\d+)\]') AS INT) AS skill_id,
+        CAST(substring(src."Уровень знаний", '\[(\d+)\]') AS INT) AS level_id,
+        CAST(src."Дата изм." AS TIMESTAMP) AS modified_at,
+        row_to_json(src) AS row_data
+      FROM
+        "{{ params.ods_schema_name }}"."фреймворки_и_уровень_знаний_сотру" AS src
+
+      UNION ALL
+      SELECT
+        src.id AS id,
+        TO_DATE (NULLIF(src."дата", ''), 'DD MM YYYY') AS "date",
+        CAST(substring(src."название", 'User:(\d+)') AS INT) AS user_id,
+        CAST(substring(src."Языки программирования", '\[(\d+)\]') AS INT) AS skill_id,
+        CAST(substring(src."Уровень знаний", '\[(\d+)\]') AS INT) AS level_id,
+        CAST(src."Дата изм." AS TIMESTAMP) AS modified_at,
+        row_to_json(src) AS row_data
+      FROM
+        "{{ params.ods_schema_name }}"."языки_программирования_и_уровень" AS src
+
+      UNION ALL
+      SELECT
+        src.id AS id,
+        TO_DATE (NULLIF(src."дата", ''), 'DD MM YYYY') AS "date",
+        src."User ID" AS user_id,
+        CAST(substring(src."отрасли", '\[(\d+)\]') AS INT) AS skill_id,
+        CAST(substring(src."Уровень знаний в отрасли", '\[(\d+)\]') AS INT) AS level_id,
+        CAST(src."Дата изм." AS TIMESTAMP) AS modified_at,
+        row_to_json(src) AS row_data
+      FROM
+        "{{ params.ods_schema_name }}"."опыт_сотрудника_в_отраслях" AS src
+
+      UNION ALL
+      SELECT
+        src.id AS id,
+        TO_DATE (NULLIF(src."дата", ''), 'DD MM YYYY') AS "date",
+        src."User ID" AS user_id,
+        CAST(substring(src."Предментые области", '\[(\d+)\]') AS INT) AS skill_id,
+        CAST(substring(src."Уровень знаний в предметной облас", '\[(\d+)\]') AS INT) AS level_id,
+        CAST(src."Дата изм." AS TIMESTAMP) AS modified_at,
+        row_to_json(src) AS row_data
+      FROM
+        "{{ params.ods_schema_name }}"."опыт_сотрудника_в_предметных_обла" AS src
+    ) AS source
+    LEFT JOIN "{{ params.dds_schema_name }}".employees AS u ON u.id = source.user_id
+    LEFT JOIN "{{ params.dds_schema_name }}".levels AS l ON l.id = source.level_id
+    LEFT JOIN "{{ params.dds_schema_name }}".skills AS s ON s.id = source.skill_id
+  WHERE
+    source.modified_at > CAST('{{ var.json.dds_layer_transfer.previous_executed_at }}' AS TIMESTAMP)
+);
+
+
+-- Removing all invalid rows from temp table and filling 'failed_entities' table
+
+WITH
+  invalid_skills AS (
+    DELETE FROM temp_skills_levels
+    WHERE skill_id IS NULL
+    RETURNING *
+  )
+INSERT INTO
+  "{{ params.dds_schema_name }}".failed_entities (entity_name, reason, entity)
+SELECT
+  'skills_levels',
+  'skill_id__is__null',
+  row_data
+FROM
+  invalid_skills;
+
+WITH
+  invalid_skills AS (
+    DELETE FROM temp_skills_levels
+    WHERE level_id IS NULL
+    RETURNING *
+  )
+INSERT INTO
+  "{{ params.dds_schema_name }}".failed_entities (entity_name, reason, entity)
+SELECT
+  'skills_levels',
+  'level_id__is__null',
+  row_data
+FROM
+  invalid_skills;
+
+WITH
+  invalid_skills AS (
+    DELETE FROM temp_skills_levels
+    WHERE user_id IS NULL
+    RETURNING *
+  )
+INSERT INTO
+  "{{ params.dds_schema_name }}".failed_entities (entity_name, reason, entity)
+SELECT
+  'skills_levels',
+  'user_id__is__null',
+  row_data
+FROM
+  invalid_skills;
+
+WITH
+  invalid_skills AS (
+    DELETE FROM temp_skills_levels
+    WHERE "date" > CURRENT_DATE OR "date" IS NULL
+    RETURNING *
+  )
+INSERT INTO
+  "{{ params.dds_schema_name }}".failed_entities (entity_name, reason, entity)
+SELECT
+  'skills_levels',
+  'date__is__invalid',
+  row_data
+FROM
+  invalid_skills;
+
+
+-- Filling 'skills_levels' table with correct user-skill association
 
 INSERT INTO
   "{{ params.dds_schema_name }}".skills_levels (id, "date", user_id, skill_id, level_id)
 SELECT
-  source.src_id,
-  source.src_date,
-  source.src_user,
-  source.skill_id,
-  source.level_id
+    id,
+    "date",
+    user_id,
+    skill_id,
+    level_id
 FROM
-  (
-    SELECT
-      MIN(src.id) AS src_id,
-      MIN(TO_DATE (NULLIF(src."дата", ''), 'DD MM YYYY')) AS src_date,
-      CAST(substring(src."название", 'User:(\d+)') AS INT) AS src_user,
-      CAST(substring(src."Базы данных", '\[(\d+)\]') AS INT) AS skill_id,
-      CAST(substring(src."Уровень знаний", '\[(\d+)\]') AS INT) AS level_id,
-      MAX(DATE(src."Дата изм.")) AS modified_at
-    FROM
-      "{{ params.ods_schema_name }}"."базы_данных_и_уровень_знаний_сотру" AS src
-    GROUP BY
-      src."название",
-      src."Базы данных",
-      src."Уровень знаний"
-    UNION ALL
-    SELECT
-      MIN(src.id) AS src_id,
-      MIN(TO_DATE (NULLIF(src."дата", ''), 'DD MM YYYY')) AS src_date,
-      CAST(substring(src."название", 'User:(\d+)') AS INT) AS src_user,
-      CAST(substring(src."инструменты", '\[(\d+)\]') AS INT) AS skill_id,
-      CAST(substring(src."Уровень знаний", '\[(\d+)\]') AS INT) AS level_id,
-      MAX(DATE(src."Дата изм.")) AS modified_at
-    FROM
-      "{{ params.ods_schema_name }}"."инструменты_и_уровень_знаний_сотр" AS src
-    GROUP BY
-      src."название",
-      src."инструменты",
-      src."Уровень знаний"
-    UNION ALL
-    SELECT
-      MIN(src.id) AS src_id,
-      MIN(TO_DATE (NULLIF(src."дата", ''), 'DD MM YYYY')) AS src_date,
-      CAST(src."User ID" AS INT) AS src_user,
-      CAST(substring(src."платформы", '\[(\d+)\]') AS INT) AS skill_id,
-      CAST(substring(src."Уровень знаний", '\[(\d+)\]') AS INT) AS level_id,
-      MAX(DATE(src."Дата изм.")) AS modified_at
-    FROM
-      "{{ params.ods_schema_name }}"."платформы_и_уровень_знаний_сотруд" AS src
-    GROUP BY
-      src."User ID",
-      src."платформы",
-      src."Уровень знаний"
-    UNION ALL
-    SELECT
-      MIN(src.id) AS src_id,
-      MIN(TO_DATE (NULLIF(src."дата", ''), 'DD MM YYYY')) AS src_date,
-      CAST(substring(src."название", 'User:(\d+)') AS INT) AS src_user,
-      CAST(substring(src."Среды разработки", '\[(\d+)\]') AS INT) AS skill_id,
-      CAST(substring(src."Уровень знаний", '\[(\d+)\]') AS INT) AS level_id,
-      MAX(DATE(src."Дата изм.")) AS modified_at
-    FROM
-      "{{ params.ods_schema_name }}"."среды_разработки_и_уровень_знаний_" AS src
-    GROUP BY
-      src."название",
-      src."Среды разработки",
-      src."Уровень знаний"
-    UNION ALL
-    SELECT
-      MIN(src.id) AS src_id,
-      MAX(TO_DATE (NULLIF(src."дата", ''), 'DD MM YYYY')) AS src_date,
-      CAST(substring(src."название", 'User:(\d+)') AS INT) AS src_user,
-      CAST(substring(src."технологии", '\[(\d+)\]') AS INT) AS skill_id,
-      CAST(substring(src."Уровень знаний", '\[(\d+)\]') AS INT) AS level_id,
-      MIN(DATE(src."Дата изм.")) AS modified_at
-    FROM
-      "{{ params.ods_schema_name }}"."технологии_и_уровень_знаний_сотру" AS src
-    GROUP BY
-      src."название",
-      src."технологии",
-      src."Уровень знаний"
-    UNION ALL
-    SELECT
-      MIN(src.id) AS src_id,
-      MIN(TO_DATE (NULLIF(src."дата", ''), 'DD MM YYYY')) AS src_date,
-      CAST(substring(src."название", 'User:(\d+)') AS INT) AS src_user,
-      CAST(substring(src."фреймворки", '\[(\d+)\]') AS INT) AS skill_id,
-      CAST(substring(src."Уровень знаний", '\[(\d+)\]') AS INT) AS level_id,
-      MAX(DATE(src."Дата изм.")) AS modified_at
-    FROM
-      "{{ params.ods_schema_name }}"."фреймворки_и_уровень_знаний_сотру" AS src
-    GROUP BY
-      src."название",
-      src."фреймворки",
-      src."Уровень знаний"
-    UNION ALL
-    SELECT distinct
-      MIN(src.id) AS src_id,
-      MIN(TO_DATE (NULLIF(src."дата", ''), 'DD MM YYYY')) AS src_date,
-      CAST(substring(src."название", 'User:(\d+)') AS INT) AS src_user,
-      CAST(substring(src."Языки программирования", '\[(\d+)\]') AS INT) AS skill_id,
-      CAST(substring(src."Уровень знаний", '\[(\d+)\]') AS INT) AS level_id,
-      MAX(DATE(src."Дата изм.")) AS modified_at
-    FROM
-      "{{ params.ods_schema_name }}"."языки_программирования_и_уровень" AS src
-    GROUP BY
-      src."название",
-      src."Языки программирования",
-      src."Уровень знаний"
-    UNION ALL
-    SELECT distinct
-      MIN(src.id) AS src_id,
-      MIN(TO_DATE (NULLIF(src."дата", ''), 'DD MM YYYY')) AS src_date,
-      src."User ID" AS src_user,
-      CAST(substring(src."отрасли", '\[(\d+)\]') AS INT) AS skill_id,
-      CAST(substring(src."Уровень знаний в отрасли", '\[(\d+)\]') AS INT) AS level_id,
-      MAX(DATE(src."Дата изм.")) AS modified_at
-    FROM
-      "{{ params.ods_schema_name }}"."опыт_сотрудника_в_отраслях" AS src
-    GROUP BY
-      src."User ID",
-      src."отрасли",
-      src."Уровень знаний в отрасли"
-    UNION ALL
-    SELECT distinct
-      MIN(src.id) AS src_id,
-      MIN(TO_DATE (NULLIF(src."дата", ''), 'DD MM YYYY')) AS src_date,
-      src."User ID" AS src_user,
-      CAST(substring(src."Предментые области", '\[(\d+)\]') AS INT) AS skill_id,
-      CAST(substring(src."Уровень знаний в предметной облас", '\[(\d+)\]') AS INT) AS level_id,
-      MAX(DATE(src."Дата изм.")) AS modified_at
-    FROM
-      "{{ params.ods_schema_name }}"."опыт_сотрудника_в_предметных_обла" AS src
-    GROUP BY
-      src."User ID",
-      src."Предментые области",
-      src."Уровень знаний в предметной облас"
-  ) AS source
-  JOIN "{{ params.dds_schema_name }}".employees AS u ON u.id = source.src_user
-  JOIN "{{ params.dds_schema_name }}".levels AS l ON l.id = source.level_id
-  JOIN "{{ params.dds_schema_name }}".skills AS s ON s.id = source.skill_id
-WHERE
-  source.src_date <= CURRENT_DATE
-  AND modified_at > DATE('{{ var.json.dds_layer_transfer.previous_executed_at }}')
-ON CONFLICT (user_id, skill_id, level_id) DO
+  temp_skills_levels
+ON CONFLICT (id) DO
 UPDATE
 SET
   "date" = EXCLUDED."date";
+
