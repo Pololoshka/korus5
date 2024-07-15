@@ -19,20 +19,20 @@ TRUNCATE TABLE "{{ params.dm_schema_name }}"."now";
 with
   full_table AS (
     -- Создаем временую таблицу, где для каждого сотрудника, прописываем все возмоные навыки для всех годов,
-    -- начиная с 2019, со значением change_id(dds_polina.skills_levels) = 0
+    -- начиная с 2019, со значением change_id("{{ params.dds_schema_name }}".skills_levels) = 0
     SELECT
       "year" AS "year",
       empl.id AS empl_id,
       s.id AS skill_id,
       0 AS change_id
     FROM
-      dds_polina.employees AS empl
-      FULL OUTER JOIN dds_polina.skills AS s ON TRUE
+      "{{ params.dds_schema_name }}".employees AS empl
+      FULL OUTER JOIN "{{ params.dds_schema_name }}".skills AS s ON TRUE
       FULL OUTER JOIN generate_series (2019, CAST(EXTRACT(YEAR FROM current_date) AS INT)) AS "year" ON TRUE
   ),
   current_levels AS
   -- Создаем временую таблицу, где для каждого сотрудника, прописываем все существющие навыки с указанным годом получения,
-  -- начиная с 2019. Если год получени навыка меньше 2019, то ставим 2019. Данные берем из dds_polina.skills_levels
+  -- начиная с 2019. Если год получени навыка меньше 2019, то ставим 2019. Данные берем из "{{ params.dds_schema_name }}".skills_levels
   (
     SELECT
       Greatest (EXTRACT(YEAR FROM sl.date), 2019) AS "year",
@@ -40,7 +40,7 @@ with
       sl.skill_id AS skill_id,
       MAX(sl.id) AS change_id
     FROM
-      dds_polina.skills_levels AS sl
+      "{{ params.dds_schema_name }}".skills_levels AS sl
     GROUP BY
       sl.empl_id,
       sl.skill_id,
