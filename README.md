@@ -11,3 +11,5 @@
 - Добавлен [DDL-скрипт](./dags/dds_layer/sql/create_schema.sql) для создания слоя "DDS layer"
 - Добавлен [DAG](./dags/dds_layer/dds_layer_transfer.py), предназначенный для создания слоя "DDS layer"
 - Добавлены Variables и Connections в docker-compose.yaml
+- Добавлен скрипт, предназначенный для исправления ошибок с помощью временых таблиц, во время формирования слоя "DDS layer". Ошибки хранятся в таблице "failed_entities" слоя "DDS layer"
+- Добавлен [DAG](./dags/dm_layer/dm_layer/dm_layer_transfer.py), предназначенный для создания слоя "DM layer". На данном этапе реализация еще не полная.
