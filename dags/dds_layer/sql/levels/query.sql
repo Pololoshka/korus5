@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS "{{ params.dds_schema_name }}".levels (
 INSERT INTO
   "{{ params.dds_schema_name }}".levels (id, "level", level_num)
 VALUES
+(0, 'Не владею', 0),
 (283045, 'Использовал на проекте', 1),
 (115637, 'Novice', 2),
 (115638, 'Junior', 3),
