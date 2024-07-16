@@ -32,7 +32,7 @@ with DAG(
         task_id="load_upload_data",
         conn_id=c.CONN_ID,
         autocommit=False,
-        sql=[f"sql/{table}/query.sql" for table in c.TABLES],
+        sql="sql/employees_statistic.sql",
     )
 
     create_schema >> load_upload_data
