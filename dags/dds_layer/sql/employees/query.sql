@@ -1,16 +1,20 @@
-CREATE TABLE IF NOT EXISTS "{{ params.dds_schema_name }}".employees (
-  id INT PRIMARY KEY,
-  last_name VARCHAR,
-  first_name VARCHAR,
-  FOC VARCHAR(50),
-  dep_id INT NOT NULL,
-  pos_id INT NOT NULL,
-  CONSTRAINT fk_employees_departments
+CREATE TABLE IF NOT EXISTS {{ params.dds_schema_name }}".employees (
+    id INT PRIMARY KEY,
+    last_name VARCHAR,
+    first_name VARCHAR,
+    foc VARCHAR(50),
+    dep_id INT NOT NULL,
+    pos_id INT NOT NULL,
+    CONSTRAINT fk_employees_departments
     FOREIGN KEY (dep_id)
-      REFERENCES "{{ params.dds_schema_name }}".departments (id),
-  CONSTRAINT fk_employees_position
+    REFERENCES {{ params.dds_schema_name }}".departments (
+        id
+    ),
+    CONSTRAINT fk_employees_position
     FOREIGN KEY (pos_id)
-      REFERENCES "{{ params.dds_schema_name }}".position (id)
+    REFERENCES {{ params.dds_schema_name }}".position (
+        id
+    )
 );
 
 -- Creating temp table 'temp_employees' with all employees
