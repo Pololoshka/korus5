@@ -205,7 +205,7 @@ WHERE
   start_data.start_year < finish_data.start_year
   AND start_data.empl_id = finish_data.empl_id
   AND start_data.skill_id = finish_data.skill_id
-  AND (finish_data.level_num % 10) - (start_data.level_num % 10) > 0),
+  AND finish_data.level_num - start_data.level_num > 0),
 empl_sum_change_skills as(
 SELECT
     *,
