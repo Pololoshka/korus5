@@ -1,6 +1,7 @@
 CREATE TABLE IF NOT EXISTS "{{ params.dm_schema_name }}".employees_statistic (
     id SERIAL PRIMARY KEY,
-    "year" INT NOT NULL,
+    start_year INT NOT NULL,
+    finish_year INT NOT NULL,
     empl_id INT NOT NULL,
     first_name VARCHAR NOT NULL,
     last_name VARCHAR NOT NULL,
@@ -10,28 +11,32 @@ CREATE TABLE IF NOT EXISTS "{{ params.dm_schema_name }}".employees_statistic (
     position VARCHAR NOT NULL,
     skill_id INT NOT NULL,
     skill_name VARCHAR NOT NULL,
-    level_id INT NOT NULL,
-    level_name VARCHAR NOT NULL,
-    level_num INT NOT NULL,
+    level_id INT,
+    level_name VARCHAR,
+    level_num INT,
     group_id INT NOT NULL,
     group_name VARCHAR NOT NULL,
-    empl_total_count INT NOT NULL,
-    empl_count INT NOT NULL,
-    empl_project_count INT NOT NULL,
-    empl_project_pct NUMERIC(5, 2) NOT NULL,
-    empl_novice_count INT NOT NULL,
-    empl_novice_pct NUMERIC(5, 2) NOT NULL,
-    empl_junior_count INT NOT NULL,
-    empl_junior_pct NUMERIC(5, 2) NOT NULL,
-    empl_middle_count INT NOT NULL,
-    empl_middle_pct NUMERIC(5, 2) NOT NULL,
-    empl_senior_count INT NOT NULL,
-    empl_senior_pct NUMERIC(5, 2) NOT NULL,
-    empl_expert_count INT NOT NULL,
-    empl_expert_pct NUMERIC(5, 2) NOT NULL,
-    avr_skill_level INT NOT NULL
+    empl_total_count INT,
+    empl_count INT,
+    empl_project_count INT,
+    empl_project_pct NUMERIC(5, 2),
+    empl_novice_count INT,
+    empl_novice_pct NUMERIC(5, 2),
+    empl_junior_count INT,
+    empl_junior_pct NUMERIC(5, 2),
+    empl_middle_count INT,
+    empl_middle_pct NUMERIC(5, 2),
+    empl_senior_count INT,
+    empl_senior_pct NUMERIC(5, 2),
+    empl_expert_count INT,
+    empl_expert_pct NUMERIC(5, 2),
+    avr_skill_level INT,
+    level_change INT,
+    level_change_total INT,
+    marker VARCHAR NOT NULL
 );
 
+TRUNCATE TABLE "{{ params.dm_schema_name }}".employees_statistic;
 
 WITH empl_empty_skills AS (
     -- Создаем временую таблицу, где для каждого сотрудника, прописываем все возмоные навыки для всех годов,
@@ -47,7 +52,7 @@ WITH empl_empty_skills AS (
     FULL OUTER JOIN generate_series(
         cast(extract(YEAR FROM CURRENT_DATE) AS INT) - 5,
         cast(extract(YEAR FROM CURRENT_DATE) AS INT)
-    ) as "year" ON true
+    ) AS "year" ON true
 ),
 -- Создаем временую таблицу, где для каждого сотрудника, прописываем все существющие навыки с указанным годом получения,
 -- начиная с 2019. Если год получени навыка меньше 2019, то ставим 2019. Данные берем из "{{ params.dds_schema_name }}".skills_levels
@@ -90,7 +95,8 @@ slim_empl_skills AS (
 -- Создаем временую таблицу, где добавляем данные из ODS леера
 empl_skills AS (
     SELECT
-        empl_skill."year",
+        empl_skill."year" as start_year,
+        empl_skill."year" as finish_year,
         empl.id AS empl_id,
         empl.first_name,
         empl.last_name,
@@ -128,7 +134,7 @@ slim_empl_stat AS (
         count(CASE WHEN level_num = 6 THEN 1 END) OVER w AS empl_expert_count
     FROM
         empl_skills
-    WINDOW w AS (PARTITION BY dep_id, pos_id, skill_id, "year")
+    WINDOW w AS (PARTITION BY dep_id, pos_id, skill_id, finish_year)
 ),
 -- Добавляем данные по количеству сотрудников в том же департаменте, на той же должности и с тем же скилом
 empl_stat AS (
@@ -150,14 +156,71 @@ empl_stat AS (
                 + 6 * empl_expert_count
             ) AS NUMERIC) / nullif(empl_count, 0),
             0
-        ) AS avr_skill_level
+        ) AS avr_skill_level,
+        'NOW' as marker,
+        null:: INT as level_change,
+        null:: INT as level_change_total
     FROM
         slim_empl_stat
-)
--- Вставляем данные в таблицу
-INSERT INTO
-  "{{ params.dm_schema_name }}".employees_statistic (
-    "year",
+),
+empl_change_skill as (
+ select
+  start_data.start_year AS start_year,
+  finish_data.start_year AS finish_year,
+  start_data.empl_id,
+  start_data.first_name,
+  start_data.last_name,
+  start_data.dep_id,
+  start_data.department,
+  start_data.pos_id,
+  start_data.position,
+  start_data.skill_id,
+  start_data.skill_name,
+  finish_data.level_id as level_id,
+  finish_data.level_name as level_name,
+  finish_data.level_num as level_num,
+  start_data.group_id,
+  start_data.group_name,
+  null:: INT as empl_total_count,
+  null:: INT as empl_count,
+  null:: INT as empl_project_count,
+  null:: INT as empl_novice_count,
+  null:: INT as empl_junior_count,
+  null:: INT as empl_middle_count,
+  null:: INT as empl_senior_count,
+  null:: INT as empl_expert_count,
+  null:: NUMERIC(5, 2) as empl_project_pct,
+  null:: NUMERIC(5, 2) as empl_novice_pct,
+  null:: NUMERIC(5, 2) as empl_junior_pct,
+  null:: NUMERIC(5, 2) as empl_middle_pct,
+  null:: NUMERIC(5, 2) as empl_senior_pct,
+  null:: NUMERIC(5, 2) as empl_expert_pct,
+  null:: INT as avr_skill_level,
+  'CHANGE' as marker,
+  (finish_data.level_num % 10) - (start_data.level_num % 10) AS level_change
+FROM
+  empl_stat AS start_data
+  CROSS JOIN empl_stat AS finish_data
+WHERE
+  start_data.start_year < finish_data.start_year
+  AND start_data.empl_id = finish_data.empl_id
+  AND start_data.skill_id = finish_data.skill_id
+  AND (finish_data.level_num % 10) - (start_data.level_num % 10) > 0),
+empl_sum_change_skills as(
+SELECT
+    *,
+    SUM(sd.level_change) over (partition by sd.empl_id, sd.start_year, sd.finish_year)  as level_change_total
+FROM
+  empl_change_skill AS sd),
+ statistic as (
+ select * from empl_stat
+ union all
+ select * from empl_sum_change_skills
+ )
+ insert into
+ "{{ params.dm_schema_name }}".employees_statistic (
+    start_year,
+    finish_year,
     empl_id,
     first_name,
     last_name,
@@ -186,6 +249,9 @@ INSERT INTO
     empl_middle_pct,
     empl_senior_pct,
     empl_expert_pct,
-    avr_skill_level
+    avr_skill_level,
+    marker,
+    level_change,
+    level_change_total
   )
-SELECT * FROM empl_stat;
+SELECT * FROM statistic;

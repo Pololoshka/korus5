@@ -1,6 +1,6 @@
 SELECT
-    USERID,
-    RESUMEID,
+    "UserID",
+    "ResumeID",
     "Активность",
     "Образование",
     "Сертификаты/Курсы",

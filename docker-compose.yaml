@@ -293,6 +293,7 @@ services:
         airflow connections import --overwrite /opt/airflow/config/connections.json;
         airflow variables import -a overwrite /opt/airflow/config/variables.json;
         "
+    restart: "no"
     depends_on:
       <<: *airflow-common-depends-on
       airflow-init:
