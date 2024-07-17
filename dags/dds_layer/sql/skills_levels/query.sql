@@ -109,30 +109,6 @@ CREATE TEMP TABLE temp_skills_levels ON COMMIT DROP AS (
         row_to_json(src) AS row_data
       FROM
         "{{ params.ods_schema_name }}"."языки_программирования_и_уровень" AS src
-
-      UNION ALL
-      SELECT
-        src.id AS id,
-        TO_DATE (NULLIF(src."дата", ''), 'DD MM YYYY') AS "date",
-        src."User ID" AS empl_id,
-        CAST(substring(src."отрасли", '\[(\d+)\]') AS INT) AS skill_id,
-        CAST(substring(src."Уровень знаний в отрасли", '\[(\d+)\]') AS INT) AS level_id,
-        CAST(src."Дата изм." AS TIMESTAMP) AS modified_at,
-        row_to_json(src) AS row_data
-      FROM
-        "{{ params.ods_schema_name }}"."опыт_сотрудника_в_отраслях" AS src
-
-      UNION ALL
-      SELECT
-        src.id AS id,
-        TO_DATE (NULLIF(src."дата", ''), 'DD MM YYYY') AS "date",
-        src."User ID" AS empl_id,
-        CAST(substring(src."Предментые области", '\[(\d+)\]') AS INT) AS skill_id,
-        CAST(substring(src."Уровень знаний в предметной облас", '\[(\d+)\]') AS INT) AS level_id,
-        CAST(src."Дата изм." AS TIMESTAMP) AS modified_at,
-        row_to_json(src) AS row_data
-      FROM
-        "{{ params.ods_schema_name }}"."опыт_сотрудника_в_предметных_обла" AS src
     ) AS source
     LEFT JOIN "{{ params.dds_schema_name }}".employees AS u ON u.id = source.empl_id
     LEFT JOIN "{{ params.dds_schema_name }}".levels AS l ON l.id = source.level_id

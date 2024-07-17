@@ -79,24 +79,6 @@ CREATE TEMP TABLE temp_skills ON COMMIT DROP AS (
         row_to_json(src) AS row_data
       FROM
         "{{ params.ods_schema_name }}"."языки_программирования" AS src
-      UNION ALL
-      SELECT
-        src.id AS src_id,
-        src."название" AS skill_name,
-        'отрасль' AS group_name,
-        CAST(src."Дата изм." AS TIMESTAMP) AS modified_at,
-        row_to_json(src) AS row_data
-      FROM
-        "{{ params.ods_schema_name }}"."отрасли" AS src
-      UNION ALL
-      SELECT
-        src.id AS src_id,
-        src."название" AS skill_name,
-        'предметная область' AS group_name,
-        CAST(src."Дата изм." AS TIMESTAMP) AS modified_at,
-        row_to_json(src) AS row_data
-      FROM
-        "{{ params.ods_schema_name }}"."предметная_область" AS src
     ) AS source
     LEFT JOIN "{{ params.dds_schema_name }}".skills_group AS skill_group ON skill_group.skill_group_name = source.group_name
   WHERE
