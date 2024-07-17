@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS {{ params.dds_schema_name }}".levels (
+CREATE TABLE IF NOT EXISTS "{{ params.dds_schema_name }}".levels (
     id INT PRIMARY KEY,
     level VARCHAR NOT NULL,
     level_num INT NOT NULL,
@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS {{ params.dds_schema_name }}".levels (
 );
 
 INSERT INTO
-{{ params.dds_schema_name }}".levels (
+"{{ params.dds_schema_name }}".levels (
     id, level, level_num
 )
 VALUES

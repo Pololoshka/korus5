@@ -1,11 +1,11 @@
-CREATE TABLE IF NOT EXISTS {{ params.dds_schema_name }}".skills_group (
+CREATE TABLE IF NOT EXISTS "{{ params.dds_schema_name }}".skills_group (
     id SERIAL PRIMARY KEY,
     skill_group_name VARCHAR(50) NOT NULL,
     UNIQUE (skill_group_name)
 );
 
 INSERT INTO
-{{ params.dds_schema_name }}".skills_group (
+"{{ params.dds_schema_name }}".skills_group (
     skill_group_name
 )
 VALUES
