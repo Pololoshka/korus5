@@ -9,12 +9,9 @@ INSERT INTO
 "{{ params.dds_schema_name }}".departments (
     department
 )
-    SELECT DISTINCT coalesce(td."new", empl."подразделения")
+SELECT DISTINCT coalesce(td."new", empl."подразделения")
 FROM
-    "{{ params.ods_schema_name }}"."сотрудники_дар" as empl
-    LEFT JOIN temp_departments as td ON empl."подразделения" = td."old"
+    "{{ params.ods_schema_name }}"."сотрудники_дар" AS empl
+LEFT JOIN temp_departments AS td ON empl."подразделения" = td."old"
 WHERE
     "подразделения" != '';
-
-
-
