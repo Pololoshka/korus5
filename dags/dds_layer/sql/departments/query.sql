@@ -11,7 +11,7 @@ INSERT INTO
 )
 SELECT DISTINCT REPLACE("подразделения", '. ', '')
 FROM
-"{{ params.ods_schema_name }}"."сотрудники_дар"
+    "{{ params.ods_schema_name }}"."сотрудники_дар"
 WHERE
     "подразделения" != ''
 ON CONFLICT (department) DO NOTHING;

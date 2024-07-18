@@ -18,7 +18,7 @@ SELECT
     cv."Активность",
     u.id
 FROM
-"{{ params.ods_schema_name }}"."резюмедар" AS cv
+    "{{ params.ods_schema_name }}"."резюмедар" AS cv
 INNER JOIN
     "{{ params.dds_schema_name }}".employees AS u
     ON cv."UserID" = u.id

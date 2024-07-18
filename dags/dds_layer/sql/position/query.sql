@@ -9,7 +9,7 @@ INSERT INTO
 "{{ params.dds_schema_name }}".position (position)
 SELECT DISTINCT "должность"
 FROM
-"{{ params.ods_schema_name }}"."сотрудники_дар"
+    "{{ params.ods_schema_name }}"."сотрудники_дар"
 WHERE
     "должность" NOT IN ('', '-')
 ON CONFLICT (position) DO NOTHING;
