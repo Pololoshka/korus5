@@ -148,6 +148,9 @@ slim_empl_stat AS (
 empl_stat AS (
     SELECT
         *,
+        'NOW' AS marker,
+        null::INT AS level_change,
+        null::INT AS level_change_total,
         round(100 * coalesce(empl_project_count::NUMERIC / nullif(empl_count, 0), 0), 2) AS empl_project_pct,
         round(100 * coalesce(empl_novice_count::NUMERIC / nullif(empl_count, 0), 0), 2) AS empl_novice_pct,
         round(100 * coalesce(empl_junior_count::NUMERIC / nullif(empl_count, 0), 0), 2) AS empl_junior_pct,
@@ -164,10 +167,7 @@ empl_stat AS (
                 + 6 * empl_expert_count
             )::NUMERIC / nullif(empl_count, 0),
             0
-        ) AS avr_skill_level,
-        'NOW' AS marker,
-        null::INT AS level_change,
-        null::INT AS level_change_total
+        ) AS avr_skill_level
     FROM
         slim_empl_stat
 ),

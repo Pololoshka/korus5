@@ -3,6 +3,7 @@ ODS_SCHEMA_NAME = "ods_polina"
 CONN_ID = "etl_db_5"
 
 TABLES = [
+    "catalog",
     "failed_entities",
     "skills_group",
     "levels",

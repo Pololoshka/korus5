@@ -7,9 +7,9 @@ CREATE TABLE IF NOT EXISTS "{{ params.dds_schema_name }}".position (
 
 INSERT INTO
 "{{ params.dds_schema_name }}".position (position)
-SELECT DISTINCT "должность"
+SELECT DISTINCT coalesce(tp."new", empl."должность")
 FROM
-    "{{ params.ods_schema_name }}"."сотрудники_дар"
+    "{{ params.ods_schema_name }}"."сотрудники_дар" as empl
+    LEFT JOIN temp_positions as tp ON empl."должность" = tp."old"
 WHERE
-    "должность" NOT IN ('', '-')
-ON CONFLICT (position) DO NOTHING;
+    "должность" NOT IN ('', '-');
