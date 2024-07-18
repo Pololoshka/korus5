@@ -15,6 +15,7 @@ apache-airflow = "==2.9.2"
 airflow-stubs = "^0.0.1"
 ruff = "^0.5.0"
 mypy = "^1.10.0"
+sqlfluff = "^3.1.0"
 
 
 [build-system]
@@ -62,3 +63,18 @@ no_implicit_reexport = true
 
 # for strict mypy: (this is the tricky one :-))
 disallow_untyped_defs = true
+
+[tool.sqlfluff.core]
+dialect = "postgres"
+templater = "raw"
+max_line_length = 140
+fix_even_unparsable = true
+exclude_rules = ["RF01", "RF03", "RF05"]
+
+
+[tool.sqlfluff.indentation]
+indent_unit = "space"
+tab_space_size = 4
+
+[tool.sqlfluff.rules.capitalisation.keywords]
+capitalisation_policy = "upper"

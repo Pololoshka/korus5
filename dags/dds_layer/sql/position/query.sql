@@ -9,7 +9,7 @@ INSERT INTO
 "{{ params.dds_schema_name }}".position (position)
 SELECT DISTINCT coalesce(tp."new", empl."должность")
 FROM
-    "{{ params.ods_schema_name }}"."сотрудники_дар" as empl
-    LEFT JOIN temp_positions as tp ON empl."должность" = tp."old"
+    "{{ params.ods_schema_name }}"."сотрудники_дар" AS empl
+LEFT JOIN temp_positions AS tp ON empl."должность" = tp."old"
 WHERE
-    "должность" NOT IN ('', '-');
+    empl."должность" NOT IN ('', '-');
