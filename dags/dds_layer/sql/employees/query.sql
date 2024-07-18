@@ -30,11 +30,12 @@ CREATE TEMP TABLE temp_employees ON COMMIT DROP AS (
         row_to_json(empl) AS row_data
     FROM
         "{{ params.ods_schema_name }}"."сотрудники_дар" AS empl
-    LEFT JOIN
-        "{{ params.dds_schema_name }}".departments AS dep
-        ON dep.department = replace(empl."подразделения", '. ', '')
-    LEFT JOIN "{{ params.dds_schema_name }}".position AS pos ON empl."должность" = pos.position
+    LEFT JOIN temp_departments as td ON empl."подразделения" = td."old"
+    LEFT JOIN temp_positions as tp ON empl."должность" = tp."old"
+    LEFT JOIN "{{ params.dds_schema_name }}".departments AS dep ON dep.department = coalesce(td."new", empl."подразделения")
+    LEFT JOIN "{{ params.dds_schema_name }}".position AS pos ON pos.position = coalesce(tp."new", empl."должность")
     LEFT JOIN "{{ params.ods_schema_name }}"."резюмедар" AS cv ON empl.id = cv."UserID"
+
 );
 
 -- Removing all invalid rows FROM temp table and filling 'failed_entities' table
