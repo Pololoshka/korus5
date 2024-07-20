@@ -5,7 +5,7 @@
 from datetime import UTC, datetime
 
 from airflow.models import DAG
-from airflow.operators.empty import EmptyOperator
+from airflow.operators.trigger_dagrun import TriggerDagRunOperator
 
 with DAG(
     dag_id="entrypoint",
@@ -14,7 +14,23 @@ with DAG(
     tags=["korus5"],
     catchup=False,
 ) as dag:
-    init = EmptyOperator(task_id="init")
-    edge = EmptyOperator(task_id="edge")
+    ods = TriggerDagRunOperator(
+        task_id="ods",
+        trigger_dag_id="ods_layer_transfer",
+        wait_for_completion=True,
+        poke_interval=30,
+    )
+    dds = TriggerDagRunOperator(
+        task_id="dds",
+        trigger_dag_id="dds_layer_transfer",
+        wait_for_completion=True,
+        poke_interval=30,
+    )
+    dm = TriggerDagRunOperator(
+        task_id="dm",
+        trigger_dag_id="dm_layer_transfer",
+        wait_for_completion=True,
+        poke_interval=30,
+    )
 
-    init >> edge
+    ods >> dds >> dm

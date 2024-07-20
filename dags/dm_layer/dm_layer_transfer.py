@@ -9,7 +9,8 @@ import datetime
 from airflow.models import DAG
 from airflow.providers.common.sql.operators.sql import SQLExecuteQueryOperator
 
-import dm_layer.dm_layer_transfer_const as c
+import constants as c
+from dm_layer.dm_layer_transfer_constants import TABLES
 
 with DAG(
     dag_id="dm_layer_transfer",
@@ -32,7 +33,7 @@ with DAG(
         task_id="load_upload_data",
         conn_id=c.CONN_ID,
         autocommit=False,
-        sql=[f"sql/{table}/query.sql" for table in c.TABLES],
+        sql=[f"sql/{table}/query.sql" for table in TABLES],
     )
 
     create_schema >> load_upload_data

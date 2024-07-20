@@ -8,6 +8,8 @@ CREATE TABLE IF NOT EXISTS "{{ params.dds_schema_name }}".skills (
     UNIQUE (skill_name, group_id)
 );
 
+TRUNCATE TABLE "{{ params.dds_schema_name }}".skills CASCADE;
+
 -- Creating temp table 'temp_skills' with all skills
 CREATE TEMP TABLE temp_skills ON COMMIT DROP AS (
     SELECT

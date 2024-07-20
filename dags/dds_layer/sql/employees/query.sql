@@ -17,6 +17,9 @@ CREATE TABLE IF NOT EXISTS "{{ params.dds_schema_name }}".employees (
     )
 );
 
+TRUNCATE TABLE "{{ params.dds_schema_name }}".employees CASCADE;
+
+
 -- Creating temp table 'temp_employees' with all employees
 CREATE TEMP TABLE temp_employees ON COMMIT DROP AS (
     SELECT

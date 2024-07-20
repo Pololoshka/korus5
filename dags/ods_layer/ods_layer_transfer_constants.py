@@ -1,8 +1,3 @@
-SCHEMA_NAME = "ods_polina"
-
-SOURCE_CONN_ID = "source"
-DESTINATION_CONN_ID = "etl_db_5"
-
 TABLES = [
     "базы_данных",
     "базы_данных_и_уровень_знаний_сотру",

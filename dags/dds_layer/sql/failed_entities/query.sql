@@ -5,3 +5,5 @@ CREATE TABLE IF NOT EXISTS "{{ params.dds_schema_name }}".failed_entities (
     entity JSONB,
     found_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+TRUNCATE TABLE "{{ params.dds_schema_name }}".failed_entities;
