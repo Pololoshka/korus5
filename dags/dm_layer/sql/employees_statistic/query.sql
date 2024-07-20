@@ -1,3 +1,4 @@
+/* noqa: disable=L034 */
 CREATE TABLE IF NOT EXISTS "{{ params.dm_schema_name }}".employees_statistic (
     id SERIAL PRIMARY KEY,
     start_year INT NOT NULL,
