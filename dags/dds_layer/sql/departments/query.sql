@@ -14,4 +14,4 @@ FROM
     "{{ params.ods_schema_name }}"."сотрудники_дар" AS empl
 LEFT JOIN temp_departments AS td ON empl."подразделения" = td."old"
 WHERE
-    "подразделения" != '';
+    empl."подразделения" != '';
