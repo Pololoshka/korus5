@@ -13,10 +13,13 @@ CREATE TABLE IF NOT EXISTS "{{ params.dds_schema_name }}".skills_levels (
     CONSTRAINT fk_skills_levels_employees
     FOREIGN KEY (empl_id)
     REFERENCES "{{ params.dds_schema_name }}".employees (id)
--- UNIQUE (skill_id, level_id, empl_id)  This table will have duplicates. Suggested by BA
+-- UNIQUE (skill_id, level_id, empl_id)  Эта таблица будет иметь дубликаты (решение аналитиков)
 );
 
--- Creating temp table 'temp_skills_levels' with all user-skill association
+TRUNCATE TABLE "{{ params.dds_schema_name }}".skills_levels;
+
+
+-- Создание временной таблицы 'temp_skills_levels' со всеми связями user-skill
 CREATE TEMP TABLE temp_skills_levels ON COMMIT DROP AS (
     SELECT
         source.id,
@@ -118,7 +121,7 @@ CREATE TEMP TABLE temp_skills_levels ON COMMIT DROP AS (
 );
 
 
--- Removing all invalid rows from temp table and filling 'failed_entities' table
+-- Удаление всех строк с ошибками и запись их в таблицу 'failed_entities'
 
 WITH
 invalid_skills AS (
@@ -185,7 +188,7 @@ FROM
     invalid_skills;
 
 
--- Filling 'skills_levels' table with correct user-skill association
+-- Заполнение таблицы 'skills_levels' корректными записями со связям user-skill
 
 INSERT INTO
 "{{ params.dds_schema_name }}".skills_levels (id, "date", empl_id, skill_id, level_id)

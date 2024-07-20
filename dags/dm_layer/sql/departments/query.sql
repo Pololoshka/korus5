@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS "{{ params.dm_schema_name }}".departments (
     "name" VARCHAR NOT NULL
 );
 
-TRUNCATE TABLE "{{ params.dm_schema_name }}".departments;
+TRUNCATE TABLE "{{ params.dm_schema_name }}".departments CASCADE;
 
 INSERT INTO
 "{{ params.dm_schema_name }}".departments (

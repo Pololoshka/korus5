@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS "{{ params.dm_schema_name }}".employees (
     first_name VARCHAR
 );
 
-TRUNCATE TABLE "{{ params.dm_schema_name }}".employees;
+TRUNCATE TABLE "{{ params.dm_schema_name }}".employees CASCADE;
 
 INSERT INTO
 "{{ params.dm_schema_name }}".employees (

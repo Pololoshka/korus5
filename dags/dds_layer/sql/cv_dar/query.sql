@@ -9,6 +9,8 @@ CREATE TABLE IF NOT EXISTS "{{ params.dds_schema_name }}".cv_dar (
     )
 );
 
+TRUNCATE TABLE "{{ params.dds_schema_name }}".cv_dar CASCADE;
+
 INSERT INTO
 "{{ params.dds_schema_name }}".cv_dar (
     id, activity, user_id

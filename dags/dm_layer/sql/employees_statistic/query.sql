@@ -59,6 +59,7 @@ CREATE TABLE IF NOT EXISTS "{{ params.dm_schema_name }}".employees_statistic (
         level_id
     )
 );
+
 TRUNCATE TABLE "{{ params.dm_schema_name }}".employees_statistic;
 
 WITH empl_empty_skills AS (

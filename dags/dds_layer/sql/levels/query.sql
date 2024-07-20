@@ -5,6 +5,8 @@ CREATE TABLE IF NOT EXISTS "{{ params.dds_schema_name }}".levels (
     UNIQUE (level_num)
 );
 
+TRUNCATE TABLE "{{ params.dds_schema_name }}".levels CASCADE;
+
 INSERT INTO
 "{{ params.dds_schema_name }}".levels (
     id, level, level_num

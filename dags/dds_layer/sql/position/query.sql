@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS "{{ params.dds_schema_name }}".position (
     UNIQUE (position)
 );
 
+TRUNCATE TABLE "{{ params.dds_schema_name }}".position CASCADE;
 
 INSERT INTO
 "{{ params.dds_schema_name }}".position (position)
