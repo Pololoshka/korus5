@@ -125,7 +125,7 @@ slim_empl_skills AS (
         )
 ),
 
--- Создаем временую таблицу, где добавляем данные из ODS леера
+-- Создаем временую таблицу, где добавляем данные из DDS леера
 empl_skills AS (
     SELECT
         empl_skill."year" AS start_year,
