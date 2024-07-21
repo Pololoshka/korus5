@@ -11,6 +11,7 @@ from airflow.models import DAG
 from airflow.operators.empty import EmptyOperator
 from airflow.operators.generic_transfer import GenericTransfer
 from airflow.providers.common.sql.operators.sql import SQLExecuteQueryOperator
+from airflow.utils.task_group import TaskGroup
 
 import constants as c
 from ods_layer.ods_layer_transfer_constants import TABLES
@@ -28,17 +29,16 @@ with DAG(
         conn_id=c.CONN_ID,
         sql="sql/create_schema.sql",
     )
-    load_upload_data = [
-        GenericTransfer(
-            task_id=f"load_table_{table}",
-            sql=f"sql/{table}/query.sql",
-            destination_table=f'"{c.ODS_SCHEMA_NAME}"."{table}"',
-            destination_conn_id=c.CONN_ID,
-            source_conn_id=c.SOURCE_CONN_ID,
-            preoperator=[f"sql/{table}/schema.sql", "sql/truncate.sql"],
-            params={"table_name": table},
-        )
-        for table in TABLES
-    ]
+    with TaskGroup("transfer_data") as transfer_data:
+        for table in TABLES:
+            GenericTransfer(
+                task_id=f"load_table_{table}",
+                sql=f"sql/{table}/query.sql",
+                destination_table=f'"{c.ODS_SCHEMA_NAME}"."{table}"',
+                destination_conn_id=c.CONN_ID,
+                source_conn_id=c.SOURCE_CONN_ID,
+                preoperator=[f"sql/{table}/schema.sql", "sql/truncate.sql"],
+                params={"table_name": table},
+            )
 
-    create_schema >> load_upload_data >> EmptyOperator(task_id="edge")
+    create_schema >> transfer_data >> EmptyOperator(task_id="edge")
