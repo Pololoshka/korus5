@@ -22,7 +22,7 @@ CREATE TEMP TABLE temp_skills ON COMMIT DROP AS (
             SELECT
                 src.id AS src_id,
                 src."название" AS skill_name,
-                'база данных' AS group_name,
+                'Базы данных' AS group_name,
                 src."Дата изм."::TIMESTAMP AS modified_at,
                 ROW_TO_JSON(src) AS row_data
             FROM
@@ -31,7 +31,7 @@ CREATE TEMP TABLE temp_skills ON COMMIT DROP AS (
             SELECT
                 src.id AS src_id,
                 src."название" AS skill_name,
-                'инструмент' AS group_name,
+                'Инструменты' AS group_name,
                 src."Дата изм."::TIMESTAMP AS modified_at,
                 ROW_TO_JSON(src) AS row_data
             FROM
@@ -40,7 +40,7 @@ CREATE TEMP TABLE temp_skills ON COMMIT DROP AS (
             SELECT
                 src.id AS src_id,
                 src."название" AS skill_name,
-                'платформа' AS group_name,
+                'Платформы' AS group_name,
                 src."Дата изм."::TIMESTAMP AS modified_at,
                 ROW_TO_JSON(src) AS row_data
             FROM
@@ -49,7 +49,7 @@ CREATE TEMP TABLE temp_skills ON COMMIT DROP AS (
             SELECT
                 src.id AS src_id,
                 src."название" AS skill_name,
-                'среда разработки' AS group_name,
+                'Среды Разработки' AS group_name,
                 src."Дата изм."::TIMESTAMP AS modified_at,
                 ROW_TO_JSON(src) AS row_data
             FROM
@@ -58,7 +58,7 @@ CREATE TEMP TABLE temp_skills ON COMMIT DROP AS (
             SELECT
                 src.id AS src_id,
                 src."название" AS skill_name,
-                'технология' AS group_name,
+                'Технологии' AS group_name,
                 src."Дата изм."::TIMESTAMP AS modified_at,
                 ROW_TO_JSON(src) AS row_data
             FROM
@@ -67,7 +67,7 @@ CREATE TEMP TABLE temp_skills ON COMMIT DROP AS (
             SELECT
                 src.id AS src_id,
                 src."название" AS skill_name,
-                'фреймворк' AS group_name,
+                'Фреймворки' AS group_name,
                 src."Дата изм."::TIMESTAMP AS modified_at,
                 ROW_TO_JSON(src) AS row_data
             FROM
@@ -76,7 +76,7 @@ CREATE TEMP TABLE temp_skills ON COMMIT DROP AS (
             SELECT
                 src.id AS src_id,
                 src."название" AS skill_name,
-                'язык программирования' AS group_name,
+                'Языки программирования' AS group_name,
                 src."Дата изм."::TIMESTAMP AS modified_at,
                 ROW_TO_JSON(src) AS row_data
             FROM

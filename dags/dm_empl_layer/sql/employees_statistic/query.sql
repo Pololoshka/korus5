@@ -165,12 +165,12 @@ slim_empl_stat AS (
 empl_stat AS (
     SELECT
         *,
-        round(100 * coalesce(empl_project_count::NUMERIC / nullif(empl_count, 0), 0), 2) AS empl_project_pct,
-        round(100 * coalesce(empl_novice_count::NUMERIC / nullif(empl_count, 0), 0), 2) AS empl_novice_pct,
-        round(100 * coalesce(empl_junior_count::NUMERIC / nullif(empl_count, 0), 0), 2) AS empl_junior_pct,
-        round(100 * coalesce(empl_middle_count::NUMERIC / nullif(empl_count, 0), 0), 2) AS empl_middle_pct,
-        round(100 * coalesce(empl_senior_count::NUMERIC / nullif(empl_count, 0), 0), 2) AS empl_senior_pct,
-        round(100 * coalesce(empl_expert_count::NUMERIC / nullif(empl_count, 0), 0), 2) AS empl_expert_pct,
+        round(100 * coalesce(empl_project_count::NUMERIC / nullif(empl_count, 0), 0)) AS empl_project_pct,
+        round(100 * coalesce(empl_novice_count::NUMERIC / nullif(empl_count, 0), 0)) AS empl_novice_pct,
+        round(100 * coalesce(empl_junior_count::NUMERIC / nullif(empl_count, 0), 0)) AS empl_junior_pct,
+        round(100 * coalesce(empl_middle_count::NUMERIC / nullif(empl_count, 0), 0)) AS empl_middle_pct,
+        round(100 * coalesce(empl_senior_count::NUMERIC / nullif(empl_count, 0), 0)) AS empl_senior_pct,
+        round(100 * coalesce(empl_expert_count::NUMERIC / nullif(empl_count, 0), 0)) AS empl_expert_pct,
         coalesce(
             (
                 1 * empl_project_count
