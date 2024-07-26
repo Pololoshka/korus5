@@ -238,11 +238,12 @@ SET
           ELSE s.empl_expert_pct
         END
 FROM department_totals AS dt
-WHERE s.year_finish = dt.year_finish 
+WHERE
+    s.year_finish = dt.year_finish 
     AND s.dep_id = dt.dep_id
     AND s.pos_id = dt.pos_id
     AND s.skill_id = dt.skill_id
-    AND dt.total_percentage > 0;
+    AND dt.total_percentage > 0,
 
 empl_change_skill AS (
     SELECT
