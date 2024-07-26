@@ -10,17 +10,17 @@ from airflow.models import DAG
 from airflow.providers.common.sql.operators.sql import SQLExecuteQueryOperator
 
 import constants as c
-from dm_layer.dm_layer_transfer_constants import TABLES
+from dm_empl_layer.dm_empl_layer_transfer_constants import TABLES
 
 with DAG(
-    dag_id="dm_layer_transfer",
+    dag_id="dm_empl_layer_transfer",
     start_date=datetime.datetime(2024, 7, 7, tzinfo=datetime.UTC),
     schedule="@once",
-    tags=["korus5", "DM"],
+    tags=["korus5", "DM", "Employees"],
     catchup=False,
     params={
         "dds_schema_name": c.DDS_SCHEMA_NAME,
-        "dm_schema_name": c.DM_SCHEMA_NAME,
+        "dm_schema_name": c.DM_EMPL_SCHEMA_NAME,
     },
 ) as dag:
     create_schema = SQLExecuteQueryOperator(
@@ -29,11 +29,11 @@ with DAG(
         sql="sql/create_schema.sql",
     )
 
-    load_upload_data = SQLExecuteQueryOperator(
-        task_id="load_upload_data",
+    transfer_data = SQLExecuteQueryOperator(
+        task_id="transfer_data",
         conn_id=c.CONN_ID,
         autocommit=False,
         sql=[f"sql/{table}/query.sql" for table in TABLES],
     )
 
-    create_schema >> load_upload_data
+    create_schema >> transfer_data

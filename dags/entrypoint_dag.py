@@ -26,11 +26,17 @@ with DAG(
         wait_for_completion=True,
         poke_interval=10,
     )
-    dm = TriggerDagRunOperator(
-        task_id="dm",
-        trigger_dag_id="dm_layer_transfer",
+    dm_empl = TriggerDagRunOperator(
+        task_id="dm_empl",
+        trigger_dag_id="dm_empl_layer_transfer",
+        wait_for_completion=True,
+        poke_interval=10,
+    )
+    dm_dep = TriggerDagRunOperator(
+        task_id="dm_dep",
+        trigger_dag_id="dm_dep_layer_transfer",
         wait_for_completion=True,
         poke_interval=10,
     )
 
-    ods >> dds >> dm
+    ods >> dds >> [dm_empl, dm_dep]
