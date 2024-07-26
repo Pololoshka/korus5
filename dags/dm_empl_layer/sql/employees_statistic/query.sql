@@ -200,7 +200,12 @@ department_totals AS (
             WHEN (
                 empl_project_pct + empl_novice_pct + empl_junior_pct + empl_middle_pct
                 + empl_senior_pct + empl_expert_pct
-            ) > 100
+            ) = 0
+                THEN 0
+            WHEN (
+                empl_project_pct + empl_novice_pct + empl_junior_pct + empl_middle_pct
+                + empl_senior_pct + empl_expert_pct
+            ) != 100
                 THEN (
                     100 - empl_project_pct - empl_novice_pct - empl_junior_pct - empl_middle_pct
                     - empl_senior_pct - empl_expert_pct
