@@ -189,6 +189,61 @@ empl_stat AS (
         slim_empl_stat
 ),
 
+-- Считаем корректировку и определяем поле, в котором самый большой процент
+department_totals AS (
+    SELECT 
+        *,
+        empl_project_pct + empl_novice_pct + empl_junior_pct + empl_middle_pct + empl_senior_pct + empl_expert_pct AS total_percentage,
+        CASE 
+            WHEN empl_project_pct + empl_novice_pct + empl_junior_pct + empl_middle_pct + empl_senior_pct + empl_expert_pct > 100
+            THEN 100 - empl_project_pct - empl_novice_pct - empl_junior_pct - empl_middle_pct - empl_senior_pct - empl_expert_pct
+            ELSE 0
+        END AS adjustment_value,
+        CASE 
+            WHEN empl_project_pct = GREATEST(empl_project_pct, empl_novice_pct, empl_junior_pct, empl_middle_pct, empl_senior_pct, empl_expert_pct) THEN 'empl_project_pct'
+            WHEN empl_novice_pct = GREATEST(empl_project_pct, empl_novice_pct, empl_junior_pct, empl_middle_pct, empl_senior_pct, empl_expert_pct) THEN 'empl_novice_pct'
+            WHEN empl_junior_pct = GREATEST(empl_project_pct, empl_novice_pct, empl_junior_pct, empl_middle_pct, empl_senior_pct, empl_expert_pct) THEN 'empl_junior_pct'
+            WHEN empl_middle_pct = GREATEST(empl_project_pct, empl_novice_pct, empl_junior_pct, empl_middle_pct, empl_senior_pct, empl_expert_pct) THEN 'empl_middle_pct'
+            WHEN empl_senior_pct = GREATEST(empl_project_pct, empl_novice_pct, empl_junior_pct, empl_middle_pct, empl_senior_pct, empl_expert_pct) THEN 'empl_senior_pct'
+            WHEN empl_expert_pct = GREATEST(empl_project_pct, empl_novice_pct, empl_junior_pct, empl_middle_pct, empl_senior_pct, empl_expert_pct) THEN 'empl_expert_pct'
+            ELSE NULL
+        END AS max_percentage_field
+    FROM empl_stat
+),
+
+UPDATE empl_stat AS s
+SET 
+    empl_project_pct = CASE 
+          WHEN dt.max_percentage_field = 'empl_project_pct' AND dt.adjustment_value != 0 THEN s.empl_project_pct + dt.adjustment_value
+          ELSE s.empl_project_pct
+        END,
+  empl_novice_pct = CASE 
+          WHEN dt.max_percentage_field = 'empl_novice_pct' AND dt.adjustment_value != 0 THEN s.empl_novice_pct + dt.adjustment_value
+          ELSE s.empl_novice_pct
+        END,
+  empl_junior_pct = CASE 
+          WHEN dt.max_percentage_field = 'empl_junior_pct' AND dt.adjustment_value != 0 THEN s.empl_junior_pct + dt.adjustment_value
+          ELSE s.empl_junior_pct
+        END,
+  empl_middle_pct = CASE 
+          WHEN dt.max_percentage_field = 'empl_middle_pct' AND dt.adjustment_value != 0 THEN s.empl_middle_pct + dt.adjustment_value
+          ELSE s.empl_middle_pct
+        END,
+  empl_senior_pct = CASE 
+          WHEN dt.max_percentage_field = 'empl_senior_pct' AND dt.adjustment_value != 0 THEN s.empl_senior_pct + dt.adjustment_value
+          ELSE s.empl_senior_pct
+        END,
+  empl_expert_pct = CASE 
+          WHEN dt.max_percentage_field = 'empl_expert_pct' AND dt.adjustment_value != 0 THEN s.empl_expert_pct + dt.adjustment_value
+          ELSE s.empl_expert_pct
+        END
+FROM department_totals AS dt
+WHERE s.year_finish = dt.year_finish 
+    AND s.dep_id = dt.dep_id
+    AND s.pos_id = dt.pos_id
+    AND s.skill_id = dt.skill_id
+    AND dt.total_percentage > 0;
+
 empl_change_skill AS (
     SELECT
         start_data.start_year,
