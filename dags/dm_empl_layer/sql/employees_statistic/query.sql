@@ -62,6 +62,7 @@ CREATE TABLE IF NOT EXISTS "{{ params.dm_schema_name }}".employees_statistic (
 
 TRUNCATE TABLE "{{ params.dm_schema_name }}".employees_statistic;
 
+CREATE TEMPORARY TABLE temp_empl_stat AS
 WITH empl_empty_skills AS (
     -- Создаем временую таблицу, где для каждого сотрудника, прописываем все возмоные навыки для всех годов,
     -- начиная с 2019, со значением skill_level_id("{{ params.dds_schema_name }}".skills_levels) = 0
@@ -245,52 +246,60 @@ department_totals AS (
                 THEN 'empl_expert_pct'
         END AS max_percentage_field
     FROM empl_stat
-),
+)
 
-updated_table_empl_stat AS (
-    UPDATE empl_stat AS s
-    SET
-        empl_project_pct = CASE
-            WHEN dt.max_percentage_field = 'empl_project_pct' AND dt.adjustment_value != 0
-                THEN s.empl_project_pct + dt.adjustment_value
-            ELSE s.empl_project_pct
-        END,
-        empl_novice_pct = CASE
-            WHEN dt.max_percentage_field = 'empl_novice_pct' AND dt.adjustment_value != 0
-                THEN s.empl_novice_pct + dt.adjustment_value
-            ELSE s.empl_novice_pct
-        END,
-        empl_junior_pct = CASE
-            WHEN dt.max_percentage_field = 'empl_junior_pct' AND dt.adjustment_value != 0
-                THEN s.empl_junior_pct + dt.adjustment_value
-            ELSE s.empl_junior_pct
-        END,
-        empl_middle_pct = CASE
-            WHEN dt.max_percentage_field = 'empl_middle_pct' AND dt.adjustment_value != 0
-                THEN s.empl_middle_pct + dt.adjustment_value
-            ELSE s.empl_middle_pct
-        END,
-        empl_senior_pct = CASE
-            WHEN dt.max_percentage_field = 'empl_senior_pct' AND dt.adjustment_value != 0
-                THEN s.empl_senior_pct + dt.adjustment_value
-            ELSE s.empl_senior_pct
-        END,
-        empl_expert_pct = CASE
-            WHEN dt.max_percentage_field = 'empl_expert_pct' AND dt.adjustment_value != 0
-                THEN s.empl_expert_pct + dt.adjustment_value
-            ELSE s.empl_expert_pct
-        END
-    FROM department_totals AS dt
-    WHERE
-        s.year_finish = dt.year_finish
-        AND s.dep_id = dt.dep_id
-        AND s.pos_id = dt.pos_id
-        AND s.skill_id = dt.skill_id
-        AND dt.total_percentage > 0
-    RETURNING *
-),
+SELECT *
+FROM department_totals;
 
-empl_change_skill AS (
+UPDATE temp_empl_stat AS s
+SET
+    empl_project_pct = CASE
+        WHEN dt.max_percentage_field = 'empl_project_pct' AND dt.adjustment_value != 0
+            THEN s.empl_project_pct + dt.adjustment_value
+        ELSE s.empl_project_pct
+    END,
+    empl_novice_pct = CASE
+        WHEN dt.max_percentage_field = 'empl_novice_pct' AND dt.adjustment_value != 0
+            THEN s.empl_novice_pct + dt.adjustment_value
+        ELSE s.empl_novice_pct
+    END,
+    empl_junior_pct = CASE
+        WHEN dt.max_percentage_field = 'empl_junior_pct' AND dt.adjustment_value != 0
+            THEN s.empl_junior_pct + dt.adjustment_value
+        ELSE s.empl_junior_pct
+    END,
+    empl_middle_pct = CASE
+        WHEN dt.max_percentage_field = 'empl_middle_pct' AND dt.adjustment_value != 0
+            THEN s.empl_middle_pct + dt.adjustment_value
+        ELSE s.empl_middle_pct
+    END,
+    empl_senior_pct = CASE
+        WHEN dt.max_percentage_field = 'empl_senior_pct' AND dt.adjustment_value != 0
+            THEN s.empl_senior_pct + dt.adjustment_value
+        ELSE s.empl_senior_pct
+    END,
+    empl_expert_pct = CASE
+        WHEN dt.max_percentage_field = 'empl_expert_pct' AND dt.adjustment_value != 0
+            THEN s.empl_expert_pct + dt.adjustment_value
+        ELSE s.empl_expert_pct
+    END
+FROM temp_empl_stat AS dt
+WHERE
+    s.finish_year = dt.finish_year
+    AND s.dep_id = dt.dep_id
+    AND s.pos_id = dt.pos_id
+    AND s.skill_id = dt.skill_id
+    AND dt.total_percentage > 0;
+
+ALTER TABLE temp_empl_stat
+DROP COLUMN IF EXISTS total_percentage;
+ALTER TABLE temp_empl_stat
+DROP COLUMN IF EXISTS adjustment_value;
+ALTER TABLE temp_empl_stat
+DROP COLUMN IF EXISTS max_percentage_field;
+
+
+WITH empl_change_skill AS (
     SELECT
         start_data.start_year,
         finish_data.start_year AS finish_year,
@@ -319,8 +328,8 @@ empl_change_skill AS (
         'CHANGE' AS marker,
         finish_data.level_num - start_data.level_num AS level_change
     FROM
-        updated_table_empl_stat AS start_data
-    CROSS JOIN updated_table_empl_stat AS finish_data
+        temp_empl_stat AS start_data
+    CROSS JOIN temp_empl_stat AS finish_data
     WHERE
         start_data.finish_year < finish_data.finish_year
         AND start_data.empl_id = finish_data.empl_id
@@ -337,7 +346,7 @@ empl_sum_change_skills AS (
 ),
 
 statistic AS (
-    SELECT * FROM updated_table_empl_stat
+    SELECT * FROM temp_empl_stat
     UNION ALL
     SELECT * FROM empl_sum_change_skills
 )
