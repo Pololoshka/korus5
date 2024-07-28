@@ -62,7 +62,6 @@ CREATE TABLE IF NOT EXISTS "{{ params.dm_schema_name }}".employees_statistic (
 
 TRUNCATE TABLE "{{ params.dm_schema_name }}".employees_statistic;
 
-CREATE TEMPORARY TABLE temp_empl_stat AS
 WITH empl_empty_skills AS (
     -- Создаем временую таблицу, где для каждого сотрудника, прописываем все возмоные навыки для всех годов,
     -- начиная с 2019, со значением skill_level_id("{{ params.dds_schema_name }}".skills_levels) = 0
@@ -251,60 +250,65 @@ department_totals AS (
                 THEN 'empl_expert_pct'
         END AS max_percentage_field
     FROM empl_stat
-)
+),
 
-SELECT *
-FROM department_totals;
+temp_empl_stat AS (
+    SELECT
+        dt.start_year,
+        dt.finish_year,
+        dt.empl_id,
+        dt.dep_id,
+        dt.pos_id,
+        dt.skill_id,
+        dt.level_id,
+        dt.level_num,
+        dt.group_id,
+        dt.empl_total_count,
+        dt.empl_count,
+        dt.empl_project_count,
+        dt.empl_novice_count,
+        dt.empl_junior_count,
+        dt.empl_middle_count,
+        dt.empl_senior_count,
+        dt.empl_expert_count,
+        dt.avr_skill_level,
+        dt.marker,
+        dt.level_change,
+        dt.level_change_total,
+        CASE
+            WHEN dt.max_percentage_field = 'empl_project_pct' AND dt.adjustment_value != 0
+                THEN dt.empl_project_pct + dt.adjustment_value
+            ELSE dt.empl_project_pct
+        END AS empl_project_pct,
+        CASE
+            WHEN dt.max_percentage_field = 'empl_novice_pct' AND dt.adjustment_value != 0
+                THEN dt.empl_novice_pct + dt.adjustment_value
+            ELSE dt.empl_novice_pct
+        END AS empl_novice_pct,
+        CASE
+            WHEN dt.max_percentage_field = 'empl_junior_pct' AND dt.adjustment_value != 0
+                THEN dt.empl_junior_pct + dt.adjustment_value
+            ELSE dt.empl_junior_pct
+        END AS empl_junior_pct,
+        CASE
+            WHEN dt.max_percentage_field = 'empl_middle_pct' AND dt.adjustment_value != 0
+                THEN dt.empl_middle_pct + dt.adjustment_value
+            ELSE dt.empl_middle_pct
+        END AS empl_middle_pct,
+        CASE
+            WHEN dt.max_percentage_field = 'empl_senior_pct' AND dt.adjustment_value != 0
+                THEN dt.empl_senior_pct + dt.adjustment_value
+            ELSE dt.empl_senior_pct
+        END AS empl_senior_pct,
+        CASE
+            WHEN dt.max_percentage_field = 'empl_expert_pct' AND dt.adjustment_value != 0
+                THEN dt.empl_expert_pct + dt.adjustment_value
+            ELSE dt.empl_expert_pct
+        END AS empl_expert_pct
+    FROM department_totals AS dt
+),
 
-UPDATE temp_empl_stat AS s
-SET
-    empl_project_pct = CASE
-        WHEN dt.max_percentage_field = 'empl_project_pct' AND dt.adjustment_value != 0
-            THEN s.empl_project_pct + dt.adjustment_value
-        ELSE s.empl_project_pct
-    END,
-    empl_novice_pct = CASE
-        WHEN dt.max_percentage_field = 'empl_novice_pct' AND dt.adjustment_value != 0
-            THEN s.empl_novice_pct + dt.adjustment_value
-        ELSE s.empl_novice_pct
-    END,
-    empl_junior_pct = CASE
-        WHEN dt.max_percentage_field = 'empl_junior_pct' AND dt.adjustment_value != 0
-            THEN s.empl_junior_pct + dt.adjustment_value
-        ELSE s.empl_junior_pct
-    END,
-    empl_middle_pct = CASE
-        WHEN dt.max_percentage_field = 'empl_middle_pct' AND dt.adjustment_value != 0
-            THEN s.empl_middle_pct + dt.adjustment_value
-        ELSE s.empl_middle_pct
-    END,
-    empl_senior_pct = CASE
-        WHEN dt.max_percentage_field = 'empl_senior_pct' AND dt.adjustment_value != 0
-            THEN s.empl_senior_pct + dt.adjustment_value
-        ELSE s.empl_senior_pct
-    END,
-    empl_expert_pct = CASE
-        WHEN dt.max_percentage_field = 'empl_expert_pct' AND dt.adjustment_value != 0
-            THEN s.empl_expert_pct + dt.adjustment_value
-        ELSE s.empl_expert_pct
-    END
-FROM temp_empl_stat AS dt
-WHERE
-    s.finish_year = dt.finish_year
-    AND s.dep_id = dt.dep_id
-    AND s.pos_id = dt.pos_id
-    AND s.skill_id = dt.skill_id
-    AND dt.total_percentage > 0;
-
-ALTER TABLE temp_empl_stat
-DROP COLUMN IF EXISTS total_percentage;
-ALTER TABLE temp_empl_stat
-DROP COLUMN IF EXISTS adjustment_value;
-ALTER TABLE temp_empl_stat
-DROP COLUMN IF EXISTS max_percentage_field;
-
-
-WITH empl_change_skill AS (
+empl_change_skill AS (
     SELECT
         start_data.start_year,
         finish_data.start_year AS finish_year,
@@ -351,7 +355,35 @@ empl_sum_change_skills AS (
 ),
 
 statistic AS (
-    SELECT * FROM temp_empl_stat
+    SELECT
+        start_year,
+        finish_year,
+        empl_id,
+        dep_id,
+        pos_id,
+        skill_id,
+        level_id,
+        level_num,
+        group_id,
+        empl_total_count,
+        empl_count,
+        empl_project_count,
+        empl_novice_count,
+        empl_junior_count,
+        empl_middle_count,
+        empl_senior_count,
+        empl_expert_count,
+        empl_project_pct,
+        empl_novice_pct,
+        empl_junior_pct,
+        empl_middle_pct,
+        empl_senior_pct,
+        empl_expert_pct,
+        avr_skill_level,
+        marker,
+        level_change,
+        level_change_total
+    FROM temp_empl_stat
     UNION ALL
     SELECT * FROM empl_sum_change_skills
 )
