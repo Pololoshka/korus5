@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS "{{ params.dm_schema_name }}".positions (
     "name" VARCHAR NOT NULL
 );
 
-TRUNCATE TABLE "{{ params.dm_schema_name }}".positions CASCADE;
+TRUNCATE TABLE "{{ params.dm_schema_name }}".positions RESTART IDENTITY CASCADE;
 
 INSERT INTO "{{ params.dm_schema_name }}".positions (
     pos_id,

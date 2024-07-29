@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS "{{ params.dds_schema_name }}".cv_dar (
     )
 );
 
-TRUNCATE TABLE "{{ params.dds_schema_name }}".cv_dar CASCADE;
+TRUNCATE TABLE "{{ params.dds_schema_name }}".cv_dar RESTART IDENTITY CASCADE;
 
 INSERT INTO
 "{{ params.dds_schema_name }}".cv_dar (

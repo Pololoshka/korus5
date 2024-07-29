@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS "{{ params.dds_schema_name }}".employees (
     )
 );
 
-TRUNCATE TABLE "{{ params.dds_schema_name }}".employees CASCADE;
+TRUNCATE TABLE "{{ params.dds_schema_name }}".employees RESTART IDENTITY CASCADE;
 
 
 -- Creating temp table 'temp_employees' with all employees

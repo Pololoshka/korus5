@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS "{{ params.dds_schema_name }}".skills_levels (
 -- UNIQUE (skill_id, level_id, empl_id)  Эта таблица будет иметь дубликаты (решение аналитиков)
 );
 
-TRUNCATE TABLE "{{ params.dds_schema_name }}".skills_levels;
+TRUNCATE TABLE "{{ params.dds_schema_name }}".skills_levels RESTART IDENTITY;
 
 
 -- Создание временной таблицы 'temp_skills_levels' со всеми связями user-skill

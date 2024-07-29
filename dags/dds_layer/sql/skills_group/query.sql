@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS "{{ params.dds_schema_name }}".skills_group (
     UNIQUE (skill_group_name)
 );
 
-TRUNCATE TABLE "{{ params.dds_schema_name }}".skills_group CASCADE;
+TRUNCATE TABLE "{{ params.dds_schema_name }}".skills_group RESTART IDENTITY CASCADE;
 
 INSERT INTO
 "{{ params.dds_schema_name }}".skills_group (
