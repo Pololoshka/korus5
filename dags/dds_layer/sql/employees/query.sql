@@ -33,10 +33,10 @@ CREATE TEMP TABLE temp_employees ON COMMIT DROP AS (
         row_to_json(empl) AS row_data  -- noqa: RF02
     FROM
         "{{ params.ods_schema_name }}"."сотрудники_дар" AS empl
-    LEFT JOIN temp_departments AS td ON empl."подразделения" = td."old"
-    LEFT JOIN temp_positions AS tp ON empl."должность" = tp."old"
-    LEFT JOIN "{{ params.dds_schema_name }}".departments AS dep ON dep.department = coalesce(td."new", empl."подразделения")
-    LEFT JOIN "{{ params.dds_schema_name }}".position AS pos ON pos.position = coalesce(tp."new", empl."должность")
+    LEFT JOIN temp_departments_naming AS dep_naming ON empl."подразделения" = dep_naming."old"
+    LEFT JOIN temp_positions_naming AS pos_naming ON empl."должность" = pos_naming."old"
+    LEFT JOIN "{{ params.dds_schema_name }}".departments AS dep ON dep.department = coalesce(dep_naming."new", empl."подразделения")
+    LEFT JOIN "{{ params.dds_schema_name }}".position AS pos ON pos.position = coalesce(pos_naming."new", empl."должность")
     LEFT JOIN "{{ params.ods_schema_name }}"."резюмедар" AS cv ON empl.id = cv."UserID"
 
 );

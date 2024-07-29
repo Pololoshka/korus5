@@ -123,16 +123,17 @@ FROM
     invalid_skills;
 
 
--- Filling 'employees' table with correct employees
+-- Filling 'skills' table with correct skills
 
 INSERT INTO
 "{{ params.dds_schema_name }}".skills (id, skill_name, group_id)
 SELECT
-    id,
-    skill_name,
-    group_id
+    ts.id,
+    COALESCE(naming."new", ts.skill_name) AS skill_name,
+    ts.group_id
 FROM
-    temp_skills
+    temp_skills AS ts
+LEFT JOIN temp_skills_naming AS naming ON ts.skill_name = naming."old"
 ON CONFLICT (id) DO
 UPDATE
 SET
