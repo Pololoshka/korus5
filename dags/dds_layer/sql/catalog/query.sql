@@ -1,6 +1,9 @@
 CREATE TEMP TABLE temp_skills_naming ("old", "new") ON COMMIT DROP AS (
     VALUES
-    ('Pythot/pytest', 'Python/pytest')
+    ('Pythot/pytest', 'Python/pytest'),
+    ('DWH_Tarantool]', 'DWH_Tarantool'),
+    ('DWH_Vertica]', 'DWH_Vertica'),
+    ('С#', 'C#')
 );
 
 

@@ -49,7 +49,7 @@ CREATE TEMP TABLE temp_skills ON COMMIT DROP AS (
             SELECT
                 src.id AS src_id,
                 src."название" AS skill_name,
-                'Среды Разработки' AS group_name,
+                'Среды разработки' AS group_name,
                 src."Дата изм."::TIMESTAMP AS modified_at,
                 ROW_TO_JSON(src) AS row_data
             FROM
