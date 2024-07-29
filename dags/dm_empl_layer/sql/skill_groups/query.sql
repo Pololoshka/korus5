@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS "{{ params.dm_schema_name }}".skill_groups (
     "name" VARCHAR NOT NULL
 );
 
-TRUNCATE TABLE "{{ params.dm_schema_name }}".skill_groups CASCADE;
+TRUNCATE TABLE "{{ params.dm_schema_name }}".skill_groups RESTART IDENTITY CASCADE;
 
 INSERT INTO
 "{{ params.dm_schema_name }}".skill_groups (

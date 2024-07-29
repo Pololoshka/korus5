@@ -6,4 +6,4 @@ CREATE TABLE IF NOT EXISTS "{{ params.dds_schema_name }}".failed_entities (
     found_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-TRUNCATE TABLE "{{ params.dds_schema_name }}".failed_entities;
+TRUNCATE TABLE "{{ params.dds_schema_name }}".failed_entities RESTART IDENTITY;

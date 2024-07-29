@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS "{{ params.dds_schema_name }}".departments (
     UNIQUE (department)
 );
 
-TRUNCATE TABLE "{{ params.dds_schema_name }}".departments CASCADE;
+TRUNCATE TABLE "{{ params.dds_schema_name }}".departments RESTART IDENTITY CASCADE;
 
 INSERT INTO
 "{{ params.dds_schema_name }}".departments (

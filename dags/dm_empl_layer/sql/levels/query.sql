@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS "{{ params.dm_schema_name }}".levels (
     level_num INT NOT NULL
 );
 
-TRUNCATE TABLE "{{ params.dm_schema_name }}".levels CASCADE;
+TRUNCATE TABLE "{{ params.dm_schema_name }}".levels RESTART IDENTITY CASCADE;
 
 INSERT INTO
 "{{ params.dm_schema_name }}".levels (

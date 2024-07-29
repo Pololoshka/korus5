@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS "{{ params.dm_schema_name }}".departments_statistic (
     )
 );
 
-TRUNCATE TABLE "{{ params.dm_schema_name }}".departments_statistic;
+TRUNCATE TABLE "{{ params.dm_schema_name }}".departments_statistic RESTART IDENTITY;
 
 WITH empl_empty_skills AS (
     -- Создаем временую таблицу, где для каждого сотрудника, прописываем все возмоные навыки для всех годов,
