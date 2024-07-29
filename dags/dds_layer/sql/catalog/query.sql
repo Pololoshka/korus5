@@ -1,4 +1,10 @@
-CREATE TEMP TABLE temp_positions ("old", "new") ON COMMIT DROP AS (
+CREATE TEMP TABLE temp_skills_naming ("old", "new") ON COMMIT DROP AS (
+    VALUES
+    ('Pythot/pytest', 'Python/pytest')
+);
+
+
+CREATE TEMP TABLE temp_positions_naming ("old", "new") ON COMMIT DROP AS (
     VALUES
     ('Аналитик,Департамент систем бизнес-аналитики', 'Аналитик'),
     ('Инженер по автоматизации технологических процессов', 'Инженер автоматизации технологических процессов'),
@@ -7,7 +13,7 @@ CREATE TEMP TABLE temp_positions ("old", "new") ON COMMIT DROP AS (
 );
 
 
-CREATE TEMP TABLE temp_departments ("old", "new") ON COMMIT DROP AS (
+CREATE TEMP TABLE temp_departments_naming ("old", "new") ON COMMIT DROP AS (
     VALUES
     ('. . . . A2 Consulting', 'A2 Consulting'),
     ('. . . Административно-финансовая служба', 'Административно-финансовая служба'),
@@ -30,7 +36,7 @@ CREATE TEMP TABLE temp_departments ("old", "new") ON COMMIT DROP AS (
     ('. . . . . Data Platform: Центр компетенций', 'Data Platform: Центр компетенций'),
     ('. . . . . Группа Центров Компетенций', 'Направление BI'),
     ('. . . . Направление DWH&ML / . . . . . Data Platform: Центр компетенций', 'Направление DWH&ML'),
-    ('. . . Sales, Marketing & Business Development / SMBD', 'Marketing & Business Development / SMBD"'),
+    ('. . . Sales, Marketing & Business Development / SMBD', 'Marketing & Business Development / SMBD'),
     ('. . . . . . Бизнес-аналитика общей практики: Центр компетенций', 'Бизнес-аналитика. Общая практика'),
     ('. . . . . . Data Platform группа #5', 'Data Platform: Центр компетенций'),
     (

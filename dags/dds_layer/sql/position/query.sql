@@ -8,9 +8,9 @@ TRUNCATE TABLE "{{ params.dds_schema_name }}".position CASCADE;
 
 INSERT INTO
 "{{ params.dds_schema_name }}".position (position)
-SELECT DISTINCT coalesce(tp."new", empl."должность")
+SELECT DISTINCT coalesce(naming."new", empl."должность")
 FROM
     "{{ params.ods_schema_name }}"."сотрудники_дар" AS empl
-LEFT JOIN temp_positions AS tp ON empl."должность" = tp."old"
+LEFT JOIN temp_positions_naming AS naming ON empl."должность" = naming."old"
 WHERE
     empl."должность" NOT IN ('', '-');
