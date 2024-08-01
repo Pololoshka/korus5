@@ -87,7 +87,9 @@ docker compose up -d
 ```
 
 Для открытия Apache Airflow в браузере в адресную строку введите: http://localhost:8080
+
 Логин: airflow
+
 Пароль: airflow
 
 # Форматирование и проверка кода
