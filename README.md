@@ -41,9 +41,9 @@ Backend часть проекта преназначена для создани
 - ["dds_layer_transfer"](./dags/dds_layer/dds_layer_transfer.py)
   Предназначен для формирования слоя "DDS layer". Он содержит скрипт, который читает данные из слоя "ODS layer", затем в соответствии с постановкой аналитиков реализует подготовку (маппинг, очистку, фильтрацию) данных и сохраняет результат в слой "DDS layer". Здесь используется оператор SQLExecuteQueryOperator для создания схемы, также для обработки и загрузки данных в слой "DDS layer".
   Все файлы с sql-скриптами, используемыми в DAG, хранятся с соответствующей [папке](./dags/dds_layer/sql/).
-- ["dm_layer_transfer"](./dags/dm_layer/dm_layer_transfer.py)
-  Предназначен для формирования слоя "DM layer", который используется для расчета витрины. Он содержит скрипт, который вычитывает данные из слоя "DDS layer", производит необходимые расчеты и агрегации и сохраняет результат в целевые таблицы слоя "DM layer". Здесь используется оператор SQLExecuteQueryOperator для создания схемы, также для обработки и загрузки данных в слой "DM layer".
-  Все файлы с sql-скриптами, используемыми в DAG, хранятся с соответствующей [папке](./dags/dds_layer/sql/).
+- ["dm_empl_layer_transfer"](./dags/dm_empl_layer/dm_empl_layer_transfer.py) и ["dm_dep_layer_transfer"](./dags/dm_dep_layer/dm_dep_layer_transfer.py)
+  Предназначены для формирования слоя "DM layer", который используется для расчета витрин: Анализ по сотруднику и Анализ по департаменту. Они содержат скрипты, которые вычитывают данные из слоя "DDS layer", производят необходимые расчеты и агрегации и сохраняют результат в целевые таблицы слоя "DM layer". Здесь используется оператор SQLExecuteQueryOperator для создания схемы, также для обработки и загрузки данных в слой "DM layer".
+  Все файлы с sql-скриптами, используемыми в DAG, хранятся с соответствующих папках: [dm_empl_layer/sql](./dags/dm_empl_layer/sql/) и [dm_dep_layer/sql](./dags/dm_dep_layer/sql/).
 
 В папке [config](./config/) содержатся конфигурации для подключения к Базам Данных, которые автоматически пробрасываются в Apache Airflow с помощью сервиса airflow-init-variables-dev.
 
@@ -112,12 +112,19 @@ make check
 - [x] Добавить [DAG](./dags/ods_layer/ods_layer_transfer.py), предназначенный для создания слоя "ODS layer"
 - [x] Добавить [DAG](./dags/dds_layer/dds_layer_transfer.py), предназначенный для создания слоя "DDS layer"
 - [x] Обработать некорректные данные во время формирования слоя "DDS layer".
-- [x] Добавить [DAG](./dags/dm_layer/dm_layer/dm_layer_transfer.py), предназначенный для создания слоя "DM layer".
+- [x] Добавить [DAG_empl](./dags/dm_empl_layer/dm_empl_layer_transfer.py) и [DAG_dep](./dags/dm_dep_layer/dm_dep_layer_transfer.py), предназначенные для создания слоя "DM layer".
 - [x] Добавить [DAG](./dags/entrypoint_dag.py), предназначенный для последовательно запуска всех процессов раз в день.
 
 # Команда проекта
 
 <a name="команда"></a>
+
 [Соколова Полина — Data Engineer](https://github.com/Pololoshka)
 
 [Унучек Ксения — Data Engineer](https://github.com/KseniyaUnuchek)
+
+[Литвиненко Маргарита — Systems Analyst](https://github.com/QYSHASTY)
+
+[Глущенко Анастасия — Business analyst](https://github.com/AnastasiaBaygulova)
+
+[Хасаннов Данил — JS Developer](https://github.com/DanilHas)

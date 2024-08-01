@@ -19,7 +19,7 @@ from ods_layer.ods_layer_transfer_constants import TABLES
 with DAG(
     dag_id="ods_layer_transfer",
     start_date=datetime.datetime(2024, 7, 7, tzinfo=datetime.UTC),
-    schedule="@once",
+    schedule=None,
     tags=["korus5", "ODS"],
     catchup=False,
     params={"schema_name": c.ODS_SCHEMA_NAME},

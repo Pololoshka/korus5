@@ -15,7 +15,7 @@ from dm_empl_layer.dm_empl_layer_transfer_constants import TABLES
 with DAG(
     dag_id="dm_empl_layer_transfer",
     start_date=datetime.datetime(2024, 7, 7, tzinfo=datetime.UTC),
-    schedule="@once",
+    schedule=None,
     tags=["korus5", "DM", "Employees"],
     catchup=False,
     params={

@@ -15,7 +15,7 @@ from dds_layer.dds_layer_transfer_constants import TABLES
 with DAG(
     dag_id="dds_layer_transfer",
     start_date=datetime.datetime(2024, 7, 7, tzinfo=datetime.UTC),
-    schedule="@once",
+    schedule=None,
     tags=["korus5", "DDS"],
     catchup=False,
     params={
